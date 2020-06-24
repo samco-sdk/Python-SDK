@@ -22,7 +22,7 @@ pip list
 
 ### Prerequisites
 
-Python 2.x or 3.x setup. You can verify the the version installed using
+Python 2.x or 3.x setup. You can verify the version installed using
 
 ```
 pip --version
@@ -40,12 +40,16 @@ These modules can also be installed using `pip`
 ## Getting started with API
 
 ### Overview
-Stocknote python SDK is a python client library for easily accessing the stocknote API.It exposes the individual APIs as python method calls and provides an easy-to-use interface for implementing your strategies in Python language. For specific details on parameters passed on the request, and details about API response, please refer our [Stocknote API documentation](https://developers.stocknote.com/api/?python#stocknote-api-documentation)..
+Stocknote python SDK is a python client library for easily accessing the stocknote API.It exposes the individual APIs as python method calls and provides an easy-to-use interface for implementing your strategies in Python language. 
+
+For specific details on parameters passed on the request, and details about API response, please refer our [Stocknote API documentation](https://developers.stocknote.com/api/?python#stocknote-api-documentation)..
  
 
 ## Using the API
 
-### Import the Python SDK and get an session token
+As a first step to access StockNote APIs, you need to import our SDK in your client code and then login to get valid session token.
+
+### Import the Python SDK and get a session token
 1. Import StocknoteAPIPythonBridge
 ```
 from snapi_py_client.snapi_bridge import StocknoteAPIPythonBridge
@@ -153,8 +157,8 @@ samco.set_session_token(sessionToken="cbcc85c02d057187a4c6512ae0978946")
    
 
 ### Search Equity & Derivative:
-To search equity, derivatives and commodity scrips based on user provided search symbol and exchange name. 
-The search function name in python is `search_equity_derivative()`
+
+The search function `search_equity_derivative()` should be used to search equity, derivatives and commodity scrips based on user provided search symbol and exchange name. 
 
 #### Parameters:
 ```python
@@ -315,8 +319,8 @@ samco.get_quote(symbol_name='BANKNIFTY18JUN2017900PE',exchange=samco.EXCHANGE_NF
 }
 ```
 ### OptionChain:
-To search OptionChain for equity, derivatives and commodity scrips based on user provided search symbol and exchange name.
-The OptionChain function name in python is `get_option_chain()`
+
+The OptionChain function `get_option_chain()` can be used to search OptionChain for equity, derivatives and commodity scrips based on user provided search symbol and exchange name.
 
 #### Parameters:
 ```python
