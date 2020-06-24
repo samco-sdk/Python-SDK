@@ -40,7 +40,7 @@ These modules can also be installed using `pip`
 ## Getting started with API
 
 ### Overview
-Stocknote python SDK is a python client library for easily accessing the stocknote API.It exposes the individual APIs as python method calls and provides an easy-to-use interface for implementing your strategies in Python language. 
+Stocknote python SDK is a python client library for easily accessing the stocknote API. It exposes the individual APIs as python method calls and provides an easy-to-use interface for implementing your strategies in Python language. 
 
 For specific details on parameters passed on the request, and details about API response, please refer our [Stocknote API documentation](https://developers.stocknote.com/api/?python#stocknote-api-documentation)..
  
@@ -740,11 +740,13 @@ samco.cancel_order(order_number='200616000000350')
 }
 ```
 ### CancelOrderCO:
-For Cancellation/exit of CO orders pass main leg Order number. If main leg is in Open/Pending state that order will be cancelled.
+
+The CancleOrder function `cancel_order_co()` is used for Cancellation/exit of CO orders by passing main leg Order number. 
+
+If main leg is in Open/Pending state that order will be cancelled.
 If the main leg is executed and the sublegs are created and in open/Trigger pending state, the order will be exited.
 If the main leg is executed and if Stop loss is hit, API will return error message "SubOrder is in Executed status. Cannot exit/cancel such orders.
 
-The CancleOrder function `cancel_order_co()`
 #### Parameters:
 ```python
 order_number
@@ -764,10 +766,12 @@ samco.cancel_order_co(order_number='200617000000181')
 }
 ```
 ### CancelOrderBO:
-For Cancellation/exit of BO orders pass main leg Order number. If main leg is in Open/Pending state that order will be cancelled.
+
+The CancleOrder function `cancel_order_bo()` is used for Cancellation/exit of BO orders pass main leg Order number. 
+If main leg is in Open/Pending state that order will be cancelled.
 If the main leg is executed and the sublegs are created and in open/Trigger pending state, the order will be exited.
-If the main leg is executed and if either of Stop loss or target is hit, API will return error message "SubOrder is in Executed status. Cannot exit/cancel such orders."
-The CancleOrder function name in python is `cancel_order_bo()`
+If the main leg is executed and if either of Stop loss or target is hit, API will return error message "SubOrder is in Executed status. Cannot exit/cancel such orders.
+
 #### Parameters:
 ```python
 order_number
@@ -787,8 +791,9 @@ samco.cancel_order_bo(order_number='200617000000375')
 }
 ```
 ### TradeBook:
-Details of all successfully executed orders placed by the user.
-The TradeBook function name in python is `get_trade_book()`
+
+The TradeBook function is `get_trade_book()`which gives details of all successfully executed orders placed by the user.
+
 #### Sample TradeBook Request:
 ```python
 samco.get_trade_book()
@@ -826,8 +831,8 @@ samco.get_trade_book()
 }
 ```
 ### Positions:
-Get position details of the user (The details of equity, derivative, commodity, currency borrowed or owned by the user).
-The Postions function name in python is `get_positions_data()`
+The Postions function `get_positions_data()` gets the position details of the user (The details of equity, derivative, commodity, currency borrowed or owned by the user).
+
 #### Parameters:
 ```python
 position_type
@@ -879,8 +884,8 @@ samco.get_positions_data(position_type=samco.POSITION_TYPE_DAY)
 }
 ```
 ### PositionConversion:
-Convert an existing position of a margin product to a different margin product type. All or a subset of an existing position quantity can be converted to a different product type.The available margin product types are MARGIN_INTRADAY_SQUAREOFF(MIS), CASHNCARRY(CNC), NORMAL(NRML).
-The PostionConversion function name in python is `convert_position()`
+
+The PostionConversion function `convert_position()` is used to convert an existing position of a margin product to a different margin product type. All or a subset of an existing position quantity can be converted to a different product type.The available margin product types are MARGIN_INTRADAY_SQUAREOFF(MIS), CASHNCARRY(CNC), NORMAL(NRML).
 
 #### Parameters:
 ```python
@@ -910,8 +915,8 @@ samco.convert_position(body={
 ```
 
 ### Holdings:
-Get the details of the Stocks which client is holding. Here, you will be able to get the Client holdings which are bought under ‘CNC’ product type and are not sold yet.
-The Holdings function name in python is `get_holding()`
+The Holdings function `get_holding()` helps the user to get the details of the Stocks which client is holding. Here, you will be able to get the Client holdings which are bought under ‘CNC’ product type and are not sold yet.
+
 #### Sample Holdings Request:
 ```python
 samco.get_holding()
@@ -990,8 +995,8 @@ samco.get_holding()
 }
 ```
 ### IntraDayCandleData:
-Gets the Intraday candle data such as Open, high, low, close and volume within specific time period per min for a specific symbol.
-The IndexIntraDayCandleData function name in python is `get_intraday_candle_data()`
+The IndexIntraDayCandleData function `get_intraday_candle_data()` gets the Intraday candle data such as Open, high, low, close and volume within specific time period per min for a specific symbol.
+
 
 #### Parameters:
 ```python
@@ -1069,8 +1074,8 @@ samco.get_intraday_candle_data(symbol_name='INFY',exchange=samco.EXCHANGE_NSE, f
 }
 ```
 ### IndexIntraDayCandleData:
-Gets the Index intraday candle data such as Open, high, low, close and volume within specific time period per min for a specific index.
-The IndexIntraDayCandleData function name in python is `get_index_intraday_candle_data()`
+The IndexIntraDayCandleData function `get_index_intraday_candle_data()` gets the Index intraday candle data such as Open, high, low, close and volume within specific time period per min for a specific index.
+
 #### Parameters:
 ```python
 index_name,from_date,to_date
@@ -1139,8 +1144,8 @@ samco.get_index_intraday_candle_data(index_name='sensex', from_date='2020-06-16 
 }
 ```
 ### HistoricalCandleData:
-Gets the historical candle data such as Open, high, low, close, last traded price and volume within specific dates for a specific symbol. From date is mandatory. End date is optional and defaults to Today.
-The HistoricalCandleData function name in python is `get_index_intraday_candle_data()`
+The HistoricalCandleData function `get_index_intraday_candle_data()` gets the historical candle data such as Open, high, low, close, last traded price and volume within specific dates for a specific symbol. From date is mandatory. End date is optional and defaults to Today.
+
 #### Parameters:
 ```python
 symbol_name,exchange,from_date,to_date
@@ -1180,8 +1185,7 @@ samco.get_historical_candle_data(symbol_name='BANKNIFTY18JUN2018500PE',exchange=
 }
 ```
 ### IndexHistoricalCandleData:
-Gets the Index historical candle data such as Open, high, low, close, last traded price and volume within specific dates for a specific index. From date is mandatory. End date is optional and defaults to Today.
-The IndexHistoricalCandleData function name in python is `get_index_candle_data()`
+The IndexHistoricalCandleData function `get_index_candle_data()` gets the Index historical candle data such as Open, high, low, close, last traded price and volume within specific dates for a specific index. From date is mandatory. End date is optional and defaults to Today.
 
 #### Parameters:
 ```python
