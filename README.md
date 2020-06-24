@@ -103,59 +103,7 @@ samco.set_session_token(sessionToken="cbcc85c02d057187a4c6512ae0978946")
 ## this function will help to reduce to pass session token for other apis. This will automate the session token for other apis
 ```
 
-## Class Variables:
-
-### Product types:
-    PRODUCT_MIS 
-    PRODUCT_CNC
-    PRODUCT_NRML
-    PRODUCT_CO
-    PRODUCT_BO
-   ```python
-   Example:- "productType":samco.PRODUCT_MIS
-   ```
-    
- ### Exchanges:
-    EXCHANGE_NSE
-    EXCHANGE_BSE
-    EXCHANGE_NFO
-    EXCHANGE_CDS
-    EXCHANGE_MCX
-   ```python
-    Example:- "exchange":samco.EXCHANGE_NSE
-   ```
-    
- ### Transaction types:
-    TRANSACTION_TYPE_BUY
-    TRANSACTION_TYPE_SELL
-   ```python
-    Example:- "transactionType":samco.TRANSACTION_TYPE_BUY
-   ```  
-   
-  ### Order types:
-    ORDER_TYPE_MARKET
-    ORDER_TYPE_LIMIT 
-    ORDER_TYPE_SLM 
-    ORDER_TYPE_SL 
-   ```python
-    Example:- "orderType":samco.ORDER_TYPE_LIMIT
-   ```  
-    
-   ### Validity types:
-    VALIDITY_DAY 
-    VALIDITY_IOC 
-   ```python
-  Example:- "orderValidity":samco.VALIDITY_DAY
-   ```
-    
-   ### Position types:
-    POSITION_TYPE_DAY
-    POSITION_TYPE_NET
-  ```python
-  Example:- position_type=samco.POSITION_TYPE_DAY
-  ```
-   
-
+ 
 ### Search Equity & Derivative:
 
 The search function `search_equity_derivative()` should be used to search equity, derivatives and commodity scrips based on user provided search symbol and exchange name. 
@@ -1279,3 +1227,56 @@ samco.logout()
   "statusMessage" : "User has successfully logged out"
 }
 ```
+
+## Constant List:
+This section contains the list of possible constant values that can be passed for input attributes like exchanges, product types etc.
+
+### Product types:
+    PRODUCT_MIS 
+    PRODUCT_CNC
+    PRODUCT_NRML
+    PRODUCT_CO
+    PRODUCT_BO
+   ```python
+   Example:- "productType":samco.PRODUCT_MIS
+   ```
+    
+ ### Exchanges:
+    EXCHANGE_NSE
+    EXCHANGE_BSE
+    EXCHANGE_NFO
+    EXCHANGE_CDS
+    EXCHANGE_MCX
+   ```python
+    Example:- "exchange":samco.EXCHANGE_NSE
+   ```
+    
+ ### Transaction types:
+    TRANSACTION_TYPE_BUY
+    TRANSACTION_TYPE_SELL
+   ```python
+    Example:- "transactionType":samco.TRANSACTION_TYPE_BUY
+   ```  
+   
+  ### Order types:
+    ORDER_TYPE_MARKET
+    ORDER_TYPE_LIMIT 
+    ORDER_TYPE_SLM 
+    ORDER_TYPE_SL 
+   ```python
+    Example:- "orderType":samco.ORDER_TYPE_LIMIT
+   ```  
+    
+   ### Validity types:
+    VALIDITY_DAY 
+    VALIDITY_IOC 
+   ```python
+  Example:- "orderValidity":samco.VALIDITY_DAY
+   ```
+    
+   ### Position types:
+    POSITION_TYPE_DAY
+    POSITION_TYPE_NET
+  ```python
+  Example:- position_type=samco.POSITION_TYPE_DAY
+  ```
