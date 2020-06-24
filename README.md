@@ -14,7 +14,7 @@ This module is installed via pip:
 ```
 pip install StocknotePythonSDK
 ```
-Once done, you can verify if package is appropriately installed using  below command and verify if the installed package is listed.
+Once done, you can verify if package is appropriately installed using  below command.
 
 ```
 pip list
