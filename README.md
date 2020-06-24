@@ -358,8 +358,8 @@ samco.get_option_chain(search_symbol_name='Reliance',exchange=samco.EXCHANGE_NFO
 }
 ```
 ### UserLimits:
-Gets the user cash balances, available margin for trading in equity and commodity segments.
-The UserLimits function name in python is `get_limits()`
+The UserLimits function `get_limits()` can be used  to gets the user cash balances, available margin for trading in equity and commodity segments.
+
 #### Sample UserLimit Request:
 ```python
 samco.get_limits()
@@ -388,8 +388,8 @@ samco.get_limits()
 }
 ```
 ### PlaceOrder:
-To place an equity/derivative order to the exchange i.e the place order request typically registers the order with OMS and when it happens successfully, a success response is returned. Successful placement of an order via the API does not imply its successful execution. To be precise, under normal scenarios, the whole flow of order execution starting with order placement, routing to OMS and transfer to the exchange, order execution, and confirmation from exchange happen real time. But due to various reasons like market hours, exchange related checks etc. This may not happen instantly. So when an order is successfully placed the PlaceOrder API returns an OrderNumber in response, and in scenarios as above the actual order status can be checked separately using the OrderStatus API call .This is for Placing CNC, MIS and NRML Orders.
-The PlaceOrder function name in python is `place_order()`
+The PlaceOrder function `place_order()` can be used to place an equity/derivative order to the exchange i.e the place order request typically registers the order with OMS and when it happens successfully, a success response is returned. Successful placement of an order via the API does not imply its successful execution. When an order is successfully placed the PlaceOrder API returns an OrderNumber in response, and the actual order status can be checked separately using the OrderStatus API call .This is for Placing CNC, MIS and NRML Orders.
+
 
 #### Parameters:
 ```python
@@ -442,8 +442,7 @@ samco.place_order(body={
 }
 ```
 ### PlaceOrderBO:
-To place an equity/derivative order to the exchange i.e the place order BO request typically registers the order with OMS and when it happens successfully, a success response is returned. Successful placement of an order via the API does not imply its successful execution. To be precise, under normal scenarios, the whole flow of order execution starting with order placement, routing to OMS and transfer to the exchange, order execution, and confirmation from exchange happen real time. But due to various reasons like market hours, exchange related checks etc. This may not happen instantly. So when an order is successfully placed the placeOrderBO returns an orderNumber in response, and in scenarios as above the actual order status can be checked separately using the orderStatus API call. This is for Placing BO Orders.
-The PlaceOrderBO function name in python is `place_order_bo()`
+The PlaceOrderBO function `place_order_bo()` can be used to place an equity/derivative bracket orders to the exchange i.e the place order BO request typically registers the order with OMS and when it happens successfully, a success response is returned. Successful placement of an order via the API does not imply its successful execution. So when an order is successfully placed the placeOrderBO returns an orderNumber in response, and the actual order status can be checked separately using the orderStatus API call. 
 
 #### Parameters:
 ```python
@@ -499,8 +498,7 @@ samco.place_order_bo(body={
 }
 ```
 ### PlaceOrderCO:
-To place an equity/derivative order to the exchange i.e the place order CO request typically registers the order with OMS and when it happens successfully, a success response is returned. Successful placement of an order via the API does not imply its successful execution. To be precise, under normal scenarios, the whole flow of order execution starting with order placement, routing to OMS and transfer to the exchange, order execution, and confirmation from exchange happen real time. But due to various reasons like market hours, exchange related checks etc. This may not happen instantly. So when an order is successfully placed the placeOrderCO returns an orderNumber in response, and in scenarios as above the actual order status can be checked separately using the orderStatus API call. This is for Placing CO Orders.
-The PlaceOrderCO function name in python is `place_order_co()`
+The PlaceOrderCO function `place_order_co()` can be used to place an equity/derivative CO order to the exchange i.e the place order CO request typically registers the order with OMS and when it happens successfully, a success response is returned. Successful placement of an order via the API does not imply its successful execution. So when an order is successfully placed the placeOrderCO returns an orderNumber in response, and in scenarios as above the actual order status can be checked separately using the orderStatus API call. 
 
 #### Parameters:
 ```python
@@ -552,8 +550,7 @@ samco.place_order_co(body={
 }
 ```
 ### ModifyOrder:
-User would be able to modify some attributes of an order as long as it is with open/pending status in system. For modification order identifier is mandatory. With order identifier you need to send the optional parameter(s) which needs to be modified. In case the optional parameters aren't sent, the default will be considered from the original order. Modifiable attributes include quantity, Order Type (L,MKT, SL,SL-M). This API cannot be used for modifying attributes of an executed/rejected/cancelled order. Only the attribute that needs to be modified should be sent in the request alongwith the Order Identifier.
-The ModifyOrder function name in python is `modify_order()`
+The ModifyOrder function `modify_order()` can be used to modify some attributes of an order as long as it is with open/pending status in system. For modification order identifier is mandatory. With order identifier you need to send the optional parameter(s) which needs to be modified. In case the optional parameters aren't sent, the default will be considered from the original order. Modifiable attributes include quantity, Order Type (L,MKT, SL,SL-M). This API cannot be used for modifying attributes of an executed/rejected/cancelled order. Only the attribute that needs to be modified should be sent in the request alongwith the Order Identifier.
 
 #### Parameters:
 ```python
@@ -595,8 +592,7 @@ samco.modify_order(order_number='200616000000350',body={"quantity": "50"})
 }
 ```
 ### OrderBook:
-Orderbook retrieves and displays details of all orders placed by the user on a specific day. This API returns all states of the orders, namely, open, pending, rejected and executed ones.
-The OrderBook function name in python is `get_order_book()`
+The OrderBook function `get_order_book()` retrieves and displays details of all orders placed by the user on a specific day. This API returns all states of the orders, namely, open, pending, rejected and executed ones.
 
 #### Sample OrderBook Request:
 ```python
@@ -647,8 +643,8 @@ samco.get_order_book()
 }
 ```
 ### TriggerOrders:
-To get the trigger order numbers in case of BO and CO orders so that their attribute values can be modified for BO orders, it will give the order identifiers. For Stop loss leg and target leg. Similarly for CO orders, it will return order identifier of stop loss leg only. Using the order identifier, the user would be able to modify the order attributes using the modifyOrder API. Refer modifyOrder API documentation for the parameters details.
-The TriggerOrders function name in python is `get_trigger_order_numbers()`
+
+The TriggerOrders function `get_trigger_order_numbers()` is used to get the trigger order numbers in case of BO and CO orders so that their attribute values can be modified for BO orders. It will give the order identifiers for Stop loss leg and target leg. Similarly for CO orders, it will return order identifier of stop loss leg only. Using the order identifier, the user would be able to modify the order attributes using the modifyOrder API. Refer modifyOrder API documentation for the parameters details.
 
 #### Parameters:
 ```python
@@ -683,8 +679,7 @@ samco.get_trigger_order_numbers(order_number="200617000000378")
 }
 ```
 ### OrderStatus:
-Get status of an order placed previously. This API returns all states of the orders,but not limited to open, pending, and partially filled ones.
-The OrderStatus function name in python is `get_order_status`
+The OrderStatus function `get_order_status` is used to get status of an order placed previously. This API returns all states of the orders,but not limited to open, pending, and partially filled ones.
 
 #### Parameters:
 ```python
@@ -723,8 +718,8 @@ samco.get_order_status(order_number="200617000000378")
 }
 ```
 ### CancelOrder:
-An order which is open or pending in system can be cancelled. In other words, cancellation cannot be initiated for already Executed, Rejected orders.This is for CNC, MIS and NRML Orders.
-The CancleOrder function name in python is `cancel_order()`
+
+The CancleOrder function `cancel_order()` is used to cancel an order which is in open or pending status in system. In other words, cancellation cannot be initiated for already Executed, Rejected orders.This is for CNC, MIS and NRML Orders.
 
 #### Parameters:
 ```python
@@ -748,7 +743,8 @@ samco.cancel_order(order_number='200616000000350')
 For Cancellation/exit of CO orders pass main leg Order number. If main leg is in Open/Pending state that order will be cancelled.
 If the main leg is executed and the sublegs are created and in open/Trigger pending state, the order will be exited.
 If the main leg is executed and if Stop loss is hit, API will return error message "SubOrder is in Executed status. Cannot exit/cancel such orders.
-The CancleOrder function name in python is `cancel_order_co()`
+
+The CancleOrder function `cancel_order_co()`
 #### Parameters:
 ```python
 order_number
