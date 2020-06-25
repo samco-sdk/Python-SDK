@@ -861,7 +861,40 @@ samco.convert_position(body={
   "statusMsg" : "Position Conversion from MIS to CNC successful"
 }
 ```
+### PositionSquareoff:
+The Holdings function `square_off_position()` helps the user to SqareOff existing position. Mostly used in day trading, in which user buy or sell a particular quantity of a stock and later in the day reverse the transaction to earn a profit. A user Covering his buy order with a sell order or a user covering his sell order with a buy order before market close for that particular day.
 
+#### Parameters:
+```python
+symbolName,exchange,transactionType,productType,netQuantity
+```
+##### Sample PositionSquareoff Request:
+```
+samco.square_off_position(body={ 
+    "positionSquareOffRequestList": [
+    {
+        "exchange": samco.EXCHANGE_NSE,
+        "symbolName":"TCS",
+        "productType":samco.PRODUCT_MIS,
+        "netQuantity":"1",
+        "transactionType":samco.TRANSACTION_TYPE_BUY
+    }
+   ]
+})
+```
+#### Sample PositionSquareoff Response:
+```python
+{
+  "serverTime": "25/06/20 20:04:30",
+  "msgId": "fcb519b8-dd74-422a-8a65-1dc0a0caedb7",
+  "positionSquareOffResponseList": [
+    {
+      "status": "Success",
+      "statusMessage": "Position square off successful -TCS-EQ NetQty:1"
+    }
+  ]
+}
+```
 ### Holdings:
 The Holdings function `get_holding()` helps the user to get the details of the Stocks which client is holding. Here, you will be able to get the Client holdings which are bought under ‘CNC’ product type and are not sold yet.
 
