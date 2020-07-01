@@ -12,7 +12,7 @@ Please refer the below documentation for details on installation, set up and API
 This module is installed via pip:
 
 ```
-pip install StocknotePythonSDK
+pip install stocknotebridge
 ```
 Once done, you can verify if package is appropriately installed using  below command.
 
@@ -25,9 +25,13 @@ pip list
 Python 2.x or 3.x setup. You can verify the version installed using
 
 ```
-pip --version
+python --version
 ```
 
+You can verify the Pip version installed using
+```
+pip --version
+```
 Also, you need the following modules:
 
 * `future`
