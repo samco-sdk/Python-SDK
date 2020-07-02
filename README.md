@@ -54,6 +54,9 @@ For specific details on parameters passed on the request, and details about API 
 * [Quote](#quote)
 * [OptionChain](#OptionChain)
 * [UserLimits](#userLimits)
+* [PlaceOrder](#placeOrder)
+* [PlaceOrderBO](#placeOrderBO)
+* [PlaceOrderCO](#placeOrderCO)
  
 
 ## Using the API
@@ -355,7 +358,10 @@ samco.get_limits()
   }
 }
 ```
-### PlaceOrder:
+<a name="placeOrder"/>
+
+## PlaceOrder
+
 The PlaceOrder function `place_order()` can be used to place an equity/derivative order to the exchange i.e the place order request typically registers the order with OMS and when it happens successfully, a success response is returned. Successful placement of an order via the API does not imply its successful execution. When an order is successfully placed the PlaceOrder API returns an OrderNumber in response, and the actual order status can be checked separately using the OrderStatus API call .This is for Placing CNC, MIS and NRML Orders.
 
 
@@ -409,7 +415,10 @@ samco.place_order(body={
   }
 }
 ```
-### PlaceOrderBO:
+<a name="placeOrderBO"/>
+
+## PlaceOrderBO
+
 The PlaceOrderBO function `place_order_bo()` can be used to place an equity/derivative bracket orders to the exchange i.e the place order BO request typically registers the order with OMS and when it happens successfully, a success response is returned. Successful placement of an order via the API does not imply its successful execution. So when an order is successfully placed the placeOrderBO returns an orderNumber in response, and the actual order status can be checked separately using the orderStatus API call. 
 
 #### Parameters:
@@ -465,7 +474,10 @@ samco.place_order_bo(body={
   }
 }
 ```
-### PlaceOrderCO:
+<a name="placeOrderCO"/>
+
+## PlaceOrderCO
+
 The PlaceOrderCO function `place_order_co()` can be used to place an equity/derivative CO order to the exchange i.e the place order CO request typically registers the order with OMS and when it happens successfully, a success response is returned. Successful placement of an order via the API does not imply its successful execution. So when an order is successfully placed the placeOrderCO returns an orderNumber in response, and in scenarios as above the actual order status can be checked separately using the orderStatus API call. 
 
 #### Parameters:
