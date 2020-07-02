@@ -64,7 +64,11 @@ For specific details on parameters passed on the request, and details about API 
 * [CancelOrder](#cancelOrder)
 * [CancelOrderCO](#cancelOrderCO)
 * [CancelOrderBO](#cancelOrderBO)
- 
+* [TradeBook](#tradeBook)
+* [Positons](#positions)
+* [PositionConversion](#positionConversion)
+* [PositionSquareOff](#positionSquareOff)
+
 
 ## Using the API
 
@@ -794,7 +798,9 @@ samco.cancel_order_bo(order_number='200617000000375')
   "statusMessage" : "Bracket Order exited successfully"
 }
 ```
-### TradeBook:
+<a name="tradeBook"/>
+
+## TradeBook
 
 The TradeBook function is `get_trade_book()`which gives details of all successfully executed orders placed by the user.
 
@@ -834,7 +840,10 @@ samco.get_trade_book()
     ]
 }
 ```
-### Positions:
+<a name="positions"/>
+
+## Positions
+
 The Postions function `get_positions_data()` gets the position details of the user (The details of equity, derivative, commodity, currency borrowed or owned by the user).
 
 #### Parameters:
@@ -887,7 +896,9 @@ samco.get_positions_data(position_type=samco.POSITION_TYPE_DAY)
     ]
 }
 ```
-### PositionConversion:
+<a name="positionConversion"/>
+
+## PositionConversion
 
 The PostionConversion function `convert_position()` is used to convert an existing position of a margin product to a different margin product type. All or a subset of an existing position quantity can be converted to a different product type.The available margin product types are MARGIN_INTRADAY_SQUAREOFF(MIS), CASHNCARRY(CNC), NORMAL(NRML).
 
@@ -917,7 +928,10 @@ samco.convert_position(body={
   "statusMsg" : "Position Conversion from MIS to CNC successful"
 }
 ```
-### PositionSquareoff:
+<a name="positionSquareOff"/>
+
+## PositionSquareOff
+
 The PositionSquareoff function `square_off_position()` helps the user to SqareOff existing position. Mostly used in day trading, in which user buy or sell a particular quantity of a stock and later in the day reverse the transaction to earn a profit. A user Covering his buy order with a sell order or a user covering his sell order with a buy order before market close for that particular day.
 
 #### Parameters:
