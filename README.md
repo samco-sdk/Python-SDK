@@ -57,6 +57,9 @@ For specific details on parameters passed on the request, and details about API 
 * [PlaceOrder](#placeOrder)
 * [PlaceOrderBO](#placeOrderBO)
 * [PlaceOrderCO](#placeOrderCO)
+* [ModifyOrder](#modifyOrder)
+* [OrderBook](#orderBook)
+* [TriggerOrder](#triggerOrder)
  
 
 ## Using the API
@@ -529,7 +532,10 @@ samco.place_order_co(body={
   }
 }
 ```
-### ModifyOrder:
+<a name="modifyOrder"/>
+
+## ModifyOrder
+
 The ModifyOrder function `modify_order()` can be used to modify some attributes of an order as long as it is with open/pending status in system. For modification order identifier is mandatory. With order identifier you need to send the optional parameter(s) which needs to be modified. In case the optional parameters aren't sent, the default will be considered from the original order. Modifiable attributes include quantity, Order Type (L,MKT, SL,SL-M). This API cannot be used for modifying attributes of an executed/rejected/cancelled order. Only the attribute that needs to be modified should be sent in the request alongwith the Order Identifier.
 
 #### Parameters:
@@ -571,7 +577,10 @@ samco.modify_order(order_number='200616000000350',body={"quantity": "50"})
   }
 }
 ```
-### OrderBook:
+<a name="orderBook"/>
+
+## OrderBook
+
 The OrderBook function `get_order_book()` retrieves and displays details of all orders placed by the user on a specific day. This API returns all states of the orders, namely, open, pending, rejected and executed ones.
 
 #### Sample OrderBook Request:
@@ -622,7 +631,9 @@ samco.get_order_book()
   ]
 }
 ```
-### TriggerOrders:
+<a name="triggerOrders"/>
+
+## TriggerOrders
 
 The TriggerOrders function `get_trigger_order_numbers()` is used to get the trigger order numbers in case of BO and CO orders so that their attribute values can be modified for BO orders. It will give the order identifiers for Stop loss leg and target leg. Similarly for CO orders, it will return order identifier of stop loss leg only. Using the order identifier, the user would be able to modify the order attributes using the modifyOrder API. Refer modifyOrder API documentation for the parameters details.
 
