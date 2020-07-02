@@ -102,11 +102,11 @@ samco=StocknoteAPIPythonBridge()
 userId,password,yob
 ```
 ## Login Sample Request:
-  ```python
-  login=samco.login(body={"userId":'*****','password':'*****','yob':'****'})
-  print("Login details",login)
-  ##this will return a user details and generated session token
-  ```
+
+    login=samco.login(body={"userId":'*****','password':'*****','yob':'****'})
+    print("Login details",login)
+    ##this will return a user details and generated session token
+ 
  ## Login Response:
  ```python
  {
@@ -215,9 +215,9 @@ The Quote function name in python is `get_quote()`
 `symbol_name`,exchange
 ```
 #### Sample Quote request:
-```python
-samco.get_quote(symbol_name='BANKNIFTY18JUN2017900PE',exchange=samco.EXCHANGE_NFO)
-```
+
+    samco.get_quote(symbol_name='BANKNIFTY18JUN2017900PE',exchange=samco.EXCHANGE_NFO)
+
 #### Sample Quote Response:
 ```python
 {
@@ -317,9 +317,9 @@ The OptionChain function `get_option_chain()` can be used to search OptionChain 
 search_symbol_name,exchange,expiry_date,strike_price,option_type
 ```
 #### Sample OptionChain Request:
-```python
-samco.get_option_chain(search_symbol_name='Reliance',exchange=samco.EXCHANGE_NFO,expiry_date='2020-07-30',strike_price='1961.40',option_type='PE')
-```
+
+    samco.get_option_chain(search_symbol_name='Reliance',exchange=samco.EXCHANGE_NFO,expiry_date='2020-07-30',strike_price='1961.40',option_type='PE')
+
 #### Sample OptionChain Response:
 ```python
 {
@@ -354,9 +354,9 @@ samco.get_option_chain(search_symbol_name='Reliance',exchange=samco.EXCHANGE_NFO
 The UserLimits function `get_limits()` can be used  to gets the user cash balances, available margin for trading in equity and commodity segments.
 
 #### Sample UserLimit Request:
-```python
-samco.get_limits()
-```
+
+    samco.get_limits()
+
 #### Sample UserLimit Response:
 ```python
 {
@@ -393,20 +393,20 @@ symbol_name,exchange,transactionType,orderType,price,quantity,disclosedQuantity,
 ```
 
 #### Sample PlaceOrder Request:
-```python
-samco.place_order(body={
-"symbolName":"RELIANCE",
-"exchange":samco.EXCHANGE_NSE,
-"transactionType":samco.TRANSACTION_TYPE_BUY,
-"orderType":samco.ORDER_TYPE_LIMIT,
-"price":"1282",
-"quantity": "15",
-"disclosedQuantity":"",
-"orderValidity":samco.VALIDITY_DAY,
-"productType":samco.PRODUCT_MIS,
-"afterMarketOrderFlag":"NO"
-})
-```
+
+    samco.place_order(body={
+    "symbolName":"RELIANCE",
+    "exchange":samco.EXCHANGE_NSE,
+    "transactionType":samco.TRANSACTION_TYPE_BUY,
+    "orderType":samco.ORDER_TYPE_LIMIT,
+    "price":"1282",
+    "quantity": "15",
+    "disclosedQuantity":"",
+    "orderValidity":samco.VALIDITY_DAY,
+    "productType":samco.PRODUCT_MIS,
+    "afterMarketOrderFlag":"NO"
+    })
+
 #### sample PlaceOrder Response:
 ```python
 {
@@ -1268,9 +1268,9 @@ The IndexHistoricalCandleData function `get_index_candle_data()` gets the Index 
 index_name,from_date,to_date
 ```
 #### Sample IndexHistoricalCandleData Request;
-```python
-samco.get_index_candle_data(index_name='NIFTY 200', from_date='2019-05-24',to_date='2019-05-29')
-```
+
+  samco.get_index_candle_data(index_name='NIFTY 200', from_date='2019-05-24',to_date='2019-05-29')
+
 #### Sample IndexHistoricalCandleData Response:
 ```python
 {
@@ -1327,19 +1327,21 @@ StockNote API platform provides the Broadcast API, as the most effective way to 
 The API uses WebSocket protocol to establish a dedicated TCP connection after an HTTP handshake to receive streaming quotes and thereby provides seamless streaming of quote data. You need to use a WebSocket client to connect to our broadcast API. If you have already subscribed to our StockNote API services, you will be able to access broadcast API too.
 
 #### Sample Streaming Request:
-```python
-value=[{"symbol":"-53"},{"symbol":"1143_CDS"},{"symbol":"1270_NSE"},{"symbol":"10604_NSE"},{"symbol":"11195_NSE"}]
-samco.set_streaming_data(value)
-samco.start_streaming()
-```
-#### Sample Streaming Response:
-```python
-Message Arrived:{"response":{"data":{"aPr":"0.00","aSz":"0","avgPr":"0.00","bPr":"0.00","bSz":"0","c":"29.65","ch":"0.38","chPer":"1.28","h":"30.28","l":"27.24","lTrdT":"09 Jun 2020, 02:11:58 PM","ltp":"30.03","ltq":"0","ltt":"09 Jun 2020, 02:11:58 PM","lttUTC":"09 Jun 2020, 08:41:58 AM","o":"29.65",
-"oI":"","oIChg":"","sym":"-53","tBQ":"0","tSQ":"0","ttv":"0.00","vol":"0","yH":"0.00","yL":"0.00"},"streaming_type":"quote"}}
 
-Message Arrived:{"response":{"data":{"aPr":"0.00","aSz":"0","avgPr":"0.00","bPr":"0.00","bSz":"0","c":"29.65","ch":"0.37","chPer":"1.25","h":"30.28","l":"27.24","lTrdT":"09 Jun 2020, 02:11:59 PM","ltp":"30.02","ltq":"0","ltt":"09 Jun 2020, 02:11:59 PM","lttUTC":"09 Jun 2020, 08:41:59 AM","o":"29.65",
-"oI":"","oIChg":"","sym":"-53","tBQ":"0","tSQ":"0","ttv":"0.00","vol":"0","yH":"0.00","yL":"0.00"},"streaming_type":"quote"}}
-```
+    value=[{"symbol":"-53"},{"symbol":"1143_CDS"},{"symbol":"1270_NSE"},{"symbol":"10604_NSE"},{"symbol":"11195_NSE"}]
+    samco.set_streaming_data(value)
+    samco.start_streaming()
+
+#### Sample Streaming Response:
+
+  Message Arrived:{"response":{"data":{"aPr":"0.00","aSz":"0","avgPr":"0.00","bPr":"0.00", "bSz":"0","c":"29.65","ch":"0.38","chPer":"1.28","h":"30.28",
+  "l":"27.24","lTrdT":"09 Jun 2020, 02:11:58 PM","ltp":"30.03","ltq":"0","ltt":"09 Jun 2020, 02:11:58 PM","lttUTC":"09 Jun 2020, 08:41:58 AM","o":"29.65",
+  "oI":"","oIChg":"","sym":"-53","tBQ":"0","tSQ":"0","ttv":"0.00","vol":"0","yH":"0.00","yL":"0.00"},"streaming_type":"quote"}}
+
+  Message Arrived:{"response":{"data":{"aPr":"0.00","aSz":"0","avgPr":"0.00","bPr":"0.00","bSz":"0","c":"29.65","ch":"0.37","chPer":"1.25","h":"30.28",
+  "l":"27.24","lTrdT":"09 Jun 2020, 02:11:59 PM","ltp":"30.02","ltq":"0","ltt":"09 Jun 2020, 02:11:59 PM","lttUTC":"09 Jun 2020, 08:41:59 AM","o":"29.65",
+  "oI":"","oIChg":"","sym":"-53","tBQ":"0","tSQ":"0","ttv":"0.00","vol":"0","yH":"0.00","yL":"0.00"},"streaming_type":"quote"}}
+
 <a name="logout"/>
 
 ## Logout
@@ -1347,9 +1349,9 @@ Logging out user from the application.
 The Logout function name in python is `logout()`
 
 #### Sample Logout Request:
-```python
-samco.logout()
-```
+
+    samco.logout()
+
 #### Sample Logout Response:
 ```python
 {
@@ -1369,9 +1371,9 @@ This section contains the list of possible constant values that can be passed fo
     PRODUCT_NRML
     PRODUCT_CO
     PRODUCT_BO
-   ```python
-   Example:- "productType":samco.PRODUCT_MIS
-   ```
+   
+    Example:- "productType":samco.PRODUCT_MIS
+   
     
  ### Exchanges:
     EXCHANGE_NSE
@@ -1379,36 +1381,36 @@ This section contains the list of possible constant values that can be passed fo
     EXCHANGE_NFO
     EXCHANGE_CDS
     EXCHANGE_MCX
-   ```python
+   
     Example:- "exchange":samco.EXCHANGE_NSE
-   ```
+   
     
  ### Transaction types:
     TRANSACTION_TYPE_BUY
     TRANSACTION_TYPE_SELL
-   ```python
+   
     Example:- "transactionType":samco.TRANSACTION_TYPE_BUY
-   ```  
+     
    
   ### Order types:
     ORDER_TYPE_MARKET
     ORDER_TYPE_LIMIT 
     ORDER_TYPE_SLM 
     ORDER_TYPE_SL 
-   ```python
+   
     Example:- "orderType":samco.ORDER_TYPE_LIMIT
-   ```  
+     
     
    ### Validity types:
     VALIDITY_DAY 
     VALIDITY_IOC 
-   ```python
-  Example:- "orderValidity":samco.VALIDITY_DAY
-   ```
+ 
+    Example:- "orderValidity":samco.VALIDITY_DAY
+   
     
    ### Position types:
     POSITION_TYPE_DAY
     POSITION_TYPE_NET
-  ```python
-  Example:- position_type=samco.POSITION_TYPE_DAY
-  ```
+ 
+    Example:- position_type=samco.POSITION_TYPE_DAY
+  
