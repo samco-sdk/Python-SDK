@@ -49,7 +49,7 @@ Stocknote python SDK is a python client library for easily accessing the stockno
 For specific details on parameters passed on the request, and details about API response, please refer our [Stocknote API documentation](https://developers.stocknote.com/api/?python#stocknote-api-documentation)..
 
 ## List of API
-
+* [Login](#login)
 * [SearchEquityDerivative](#searchequityderivative)
 * [Quote](#quote)
 * [OptionChain](#OptionChain)
@@ -71,6 +71,10 @@ For specific details on parameters passed on the request, and details about API 
 * [Holdings](#holdings)
 * [IntraDayCandleData](#intraDayCandleData)
 * [IndexIntraDayCandleData](#indexIntraDayCandleData)
+* [HistoricalCandleData](#historicalCandleData)
+* [IndexHistoricalCandleData](#indexHistoricalCandleData)
+* [StreamingData](#streamingData)
+* [Logout](#logout)
 
 
 ## Using the API
@@ -88,6 +92,9 @@ from snapi_py_client.snapi_bridge import StocknoteAPIPythonBridge
 samco=StocknoteAPIPythonBridge()
 ```
 3. Login to access Stocknote API by providing below parameters.
+
+<a name="login"/>
+## Login
 
 ## Parameters:
 ```
@@ -1206,7 +1213,10 @@ samco.get_index_intraday_candle_data(index_name='sensex', from_date='2020-06-16 
   ]
 }
 ```
-### HistoricalCandleData:
+<a name="historicalCandleData"/>
+
+## HistoricalCandleData:
+
 The HistoricalCandleData function `get_index_intraday_candle_data()` gets the historical candle data such as Open, high, low, close, last traded price and volume within specific dates for a specific symbol. From date is mandatory. End date is optional and defaults to Today.
 
 #### Parameters:
@@ -1247,6 +1257,8 @@ samco.get_historical_candle_data(symbol_name='BANKNIFTY18JUN2018500PE',exchange=
   ]
 }
 ```
+<a name="indexHistoricalCandleData"/>
+
 ### IndexHistoricalCandleData:
 The IndexHistoricalCandleData function `get_index_candle_data()` gets the Index historical candle data such as Open, high, low, close, last traded price and volume within specific dates for a specific index. From date is mandatory. End date is optional and defaults to Today.
 
@@ -1305,7 +1317,10 @@ samco.get_index_candle_data(index_name='NIFTY 200', from_date='2019-05-24',to_da
   ]
 }
 ```
-### StreamingData:
+<a name="streamingData"/>
+
+## StreamingData
+
 StockNote API platform provides the Broadcast API, as the most effective way to receive quote data for instruments across all exchanges during live market hours. The API provides continuous streaming data of quote based on user request, and primarily consists of fields such as last traded price, open, high, low, close, last traded quantity, last traded volume, last traded time etc.
 
 The API uses WebSocket protocol to establish a dedicated TCP connection after an HTTP handshake to receive streaming quotes and thereby provides seamless streaming of quote data. You need to use a WebSocket client to connect to our broadcast API. If you have already subscribed to our StockNote API services, you will be able to access broadcast API too.
@@ -1324,8 +1339,8 @@ Message Arrived:{"response":{"data":{"aPr":"0.00","aSz":"0","avgPr":"0.00","bPr"
 Message Arrived:{"response":{"data":{"aPr":"0.00","aSz":"0","avgPr":"0.00","bPr":"0.00","bSz":"0","c":"29.65","ch":"0.37","chPer":"1.25","h":"30.28","l":"27.24","lTrdT":"09 Jun 2020, 02:11:59 PM","ltp":"30.02","ltq":"0","ltt":"09 Jun 2020, 02:11:59 PM","lttUTC":"09 Jun 2020, 08:41:59 AM","o":"29.65",
 "oI":"","oIChg":"","sym":"-53","tBQ":"0","tSQ":"0","ttv":"0.00","vol":"0","yH":"0.00","yL":"0.00"},"streaming_type":"quote"}}
 ```
-
-### Logout:
+<a name="logout"/>
+## Logout
 Logging out user from the application.
 The Logout function name in python is `logout()`
 
