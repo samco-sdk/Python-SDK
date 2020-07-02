@@ -150,9 +150,9 @@ The search function `search_equity_derivative()` should be used to search equity
 search_symbol_name,exchange
 ```
 #### Sample Search Request:
-```python
+
 samco.search_equity_derivative(search_symbol_name="BANKNIFTY20JUN",exchange=samco.EXCHANGE_NFO)
-```
+
 #### Sample Search Response:
 ```python
 {
