@@ -94,6 +94,7 @@ samco=StocknoteAPIPythonBridge()
 3. Login to access Stocknote API by providing below parameters.
 
 <a name="login"/>
+
 ## Login
 
 ## Parameters:
@@ -1340,6 +1341,7 @@ Message Arrived:{"response":{"data":{"aPr":"0.00","aSz":"0","avgPr":"0.00","bPr"
 "oI":"","oIChg":"","sym":"-53","tBQ":"0","tSQ":"0","ttv":"0.00","vol":"0","yH":"0.00","yL":"0.00"},"streaming_type":"quote"}}
 ```
 <a name="logout"/>
+
 ## Logout
 Logging out user from the application.
 The Logout function name in python is `logout()`
