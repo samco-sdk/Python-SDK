@@ -68,6 +68,9 @@ For specific details on parameters passed on the request, and details about API 
 * [Positons](#positions)
 * [PositionConversion](#positionConversion)
 * [PositionSquareOff](#positionSquareOff)
+* [Holdings](#holdings)
+* [IntraDayCandleData](#intraDayCandleData)
+* [IndexIntraDayCandleData](#indexIntraDayCandleData)
 
 
 ## Using the API
@@ -965,7 +968,10 @@ samco.square_off_position(body={
   ]
 }
 ```
-### Holdings:
+<a name="holdings"/>
+
+## Holdings
+
 The Holdings function `get_holding()` helps the user to get the details of the Stocks which client is holding. Here, you will be able to get the Client holdings which are bought under ‘CNC’ product type and are not sold yet.
 
 #### Sample Holdings Request:
@@ -1045,7 +1051,10 @@ samco.get_holding()
     ]
 }
 ```
-### IntraDayCandleData:
+<a name="intraDayCandleData"/>
+
+## IntraDayCandleData
+
 The IndexIntraDayCandleData function `get_intraday_candle_data()` gets the Intraday candle data such as Open, high, low, close and volume within specific time period per min for a specific symbol.
 
 
@@ -1124,7 +1133,10 @@ samco.get_intraday_candle_data(symbol_name='INFY',exchange=samco.EXCHANGE_NSE, f
   ]
 }
 ```
-### IndexIntraDayCandleData:
+<a name="indexIntraDayCandleData"/>
+
+### IndexIntraDayCandleData
+
 The IndexIntraDayCandleData function `get_index_intraday_candle_data()` gets the Index intraday candle data such as Open, high, low, close and volume within specific time period per min for a specific index.
 
 #### Parameters:
