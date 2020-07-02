@@ -50,7 +50,7 @@ For specific details on parameters passed on the request, and details about API 
 
 ## List of API
 
-[SearchEquityDerivative](#searchequityderivative)
+* [SearchEquityDerivative](#searchequityderivative)
  
 
 ## Using the API
