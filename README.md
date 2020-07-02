@@ -12,7 +12,7 @@ Please refer the below documentation for details on installation, set up and API
 This module is installed via pip:
 
 ```
-pip install StocknotePythonSDK
+pip install stocknotebridge
 ```
 Once done, you can verify if package is appropriately installed using  below command.
 
@@ -25,9 +25,13 @@ pip list
 Python 2.x or 3.x setup. You can verify the version installed using
 
 ```
-pip --version
+python --version
 ```
 
+You can verify the Pip version installed using
+```
+pip --version
+```
 Also, you need the following modules:
 
 * `future`
@@ -43,7 +47,35 @@ These modules can also be installed using `pip`
 Stocknote python SDK is a python client library for easily accessing the stocknote API. It exposes the individual APIs as python method calls and provides an easy-to-use interface for implementing your strategies in Python language. 
 
 For specific details on parameters passed on the request, and details about API response, please refer our [Stocknote API documentation](https://developers.stocknote.com/api/?python#stocknote-api-documentation)..
- 
+
+## List of API
+* [Login](#login)
+* [SearchEquityDerivative](#searchequityderivative)
+* [Quote](#quote)
+* [OptionChain](#OptionChain)
+* [UserLimits](#userLimits)
+* [PlaceOrder](#placeOrder)
+* [PlaceOrderBO](#placeOrderBO)
+* [PlaceOrderCO](#placeOrderCO)
+* [ModifyOrder](#modifyOrder)
+* [OrderBook](#orderBook)
+* [TriggerOrders](#triggerOrders)
+* [OrderStatus](#orderStatus)
+* [CancelOrder](#cancelOrder)
+* [CancelOrderCO](#cancelOrderCO)
+* [CancelOrderBO](#cancelOrderBO)
+* [TradeBook](#tradeBook)
+* [Positons](#positions)
+* [PositionConversion](#positionConversion)
+* [PositionSquareOff](#positionSquareOff)
+* [Holdings](#holdings)
+* [IntraDayCandleData](#intraDayCandleData)
+* [IndexIntraDayCandleData](#indexIntraDayCandleData)
+* [HistoricalCandleData](#historicalCandleData)
+* [IndexHistoricalCandleData](#indexHistoricalCandleData)
+* [StreamingData](#streamingData)
+* [Logout](#logout)
+
 
 ## Using the API
 
@@ -60,6 +92,10 @@ from snapi_py_client.snapi_bridge import StocknoteAPIPythonBridge
 samco=StocknoteAPIPythonBridge()
 ```
 3. Login to access Stocknote API by providing below parameters.
+
+<a name="login"/>
+
+## Login
 
 ## Parameters:
 ```
@@ -103,8 +139,9 @@ samco.set_session_token(sessionToken="cbcc85c02d057187a4c6512ae0978946")
 ## this function will help to reduce to pass session token for other apis. This will automate the session token for other apis
 ```
 
- 
-### Search Equity & Derivative:
+<a name="searchequityderivative"/>
+
+## SearchEquityDerivative:
 
 The search function `search_equity_derivative()` should be used to search equity, derivatives and commodity scrips based on user provided search symbol and exchange name. 
 
@@ -166,7 +203,10 @@ samco.search_equity_derivative(search_symbol_name="BANKNIFTY20JUN",exchange=samc
     ]
 }
 ```
-### Quote:
+<a name="quote"/>
+
+## Quote
+
 Get market depth details for a specific equity scrip including but not limited to values like last trade price, previous close price, change value, change percentage, bids/asks, upper and lower circuit limits etc. This helps user with market picture of an equity scrip using which he will be able to place an order.
 The Quote function name in python is `get_quote()`
 
@@ -266,7 +306,9 @@ samco.get_quote(symbol_name='BANKNIFTY18JUN2017900PE',exchange=samco.EXCHANGE_NF
     "oIChangePer": "58.05"
 }
 ```
-### OptionChain:
+<a name="optionChain"/>
+
+## OptionChain:
 
 The OptionChain function `get_option_chain()` can be used to search OptionChain for equity, derivatives and commodity scrips based on user provided search symbol and exchange name.
 
@@ -305,7 +347,10 @@ samco.get_option_chain(search_symbol_name='Reliance',exchange=samco.EXCHANGE_NFO
   ]
 }
 ```
-### UserLimits:
+<a name="userLimits"/>
+
+## UserLimits
+
 The UserLimits function `get_limits()` can be used  to gets the user cash balances, available margin for trading in equity and commodity segments.
 
 #### Sample UserLimit Request:
@@ -335,7 +380,10 @@ samco.get_limits()
   }
 }
 ```
-### PlaceOrder:
+<a name="placeOrder"/>
+
+## PlaceOrder
+
 The PlaceOrder function `place_order()` can be used to place an equity/derivative order to the exchange i.e the place order request typically registers the order with OMS and when it happens successfully, a success response is returned. Successful placement of an order via the API does not imply its successful execution. When an order is successfully placed the PlaceOrder API returns an OrderNumber in response, and the actual order status can be checked separately using the OrderStatus API call .This is for Placing CNC, MIS and NRML Orders.
 
 
@@ -389,7 +437,10 @@ samco.place_order(body={
   }
 }
 ```
-### PlaceOrderBO:
+<a name="placeOrderBO"/>
+
+## PlaceOrderBO
+
 The PlaceOrderBO function `place_order_bo()` can be used to place an equity/derivative bracket orders to the exchange i.e the place order BO request typically registers the order with OMS and when it happens successfully, a success response is returned. Successful placement of an order via the API does not imply its successful execution. So when an order is successfully placed the placeOrderBO returns an orderNumber in response, and the actual order status can be checked separately using the orderStatus API call. 
 
 #### Parameters:
@@ -445,7 +496,10 @@ samco.place_order_bo(body={
   }
 }
 ```
-### PlaceOrderCO:
+<a name="placeOrderCO"/>
+
+## PlaceOrderCO
+
 The PlaceOrderCO function `place_order_co()` can be used to place an equity/derivative CO order to the exchange i.e the place order CO request typically registers the order with OMS and when it happens successfully, a success response is returned. Successful placement of an order via the API does not imply its successful execution. So when an order is successfully placed the placeOrderCO returns an orderNumber in response, and in scenarios as above the actual order status can be checked separately using the orderStatus API call. 
 
 #### Parameters:
@@ -497,7 +551,10 @@ samco.place_order_co(body={
   }
 }
 ```
-### ModifyOrder:
+<a name="modifyOrder"/>
+
+## ModifyOrder
+
 The ModifyOrder function `modify_order()` can be used to modify some attributes of an order as long as it is with open/pending status in system. For modification order identifier is mandatory. With order identifier you need to send the optional parameter(s) which needs to be modified. In case the optional parameters aren't sent, the default will be considered from the original order. Modifiable attributes include quantity, Order Type (L,MKT, SL,SL-M). This API cannot be used for modifying attributes of an executed/rejected/cancelled order. Only the attribute that needs to be modified should be sent in the request alongwith the Order Identifier.
 
 #### Parameters:
@@ -539,7 +596,10 @@ samco.modify_order(order_number='200616000000350',body={"quantity": "50"})
   }
 }
 ```
-### OrderBook:
+<a name="orderBook"/>
+
+## OrderBook
+
 The OrderBook function `get_order_book()` retrieves and displays details of all orders placed by the user on a specific day. This API returns all states of the orders, namely, open, pending, rejected and executed ones.
 
 #### Sample OrderBook Request:
@@ -590,7 +650,9 @@ samco.get_order_book()
   ]
 }
 ```
-### TriggerOrders:
+<a name="triggerOrders"/>
+
+## TriggerOrders
 
 The TriggerOrders function `get_trigger_order_numbers()` is used to get the trigger order numbers in case of BO and CO orders so that their attribute values can be modified for BO orders. It will give the order identifiers for Stop loss leg and target leg. Similarly for CO orders, it will return order identifier of stop loss leg only. Using the order identifier, the user would be able to modify the order attributes using the modifyOrder API. Refer modifyOrder API documentation for the parameters details.
 
@@ -626,7 +688,10 @@ samco.get_trigger_order_numbers(order_number="200617000000378")
     ]
 }
 ```
-### OrderStatus:
+<a name="orderStatus"/>
+
+## OrderStatus
+
 The OrderStatus function `get_order_status` is used to get status of an order placed previously. This API returns all states of the orders,but not limited to open, pending, and partially filled ones.
 
 #### Parameters:
@@ -665,7 +730,9 @@ samco.get_order_status(order_number="200617000000378")
     }
 }
 ```
-### CancelOrder:
+<a name="cancelOrder"/>
+
+## CancelOrder:
 
 The CancleOrder function `cancel_order()` is used to cancel an order which is in open or pending status in system. In other words, cancellation cannot be initiated for already Executed, Rejected orders.This is for CNC, MIS and NRML Orders.
 
@@ -687,7 +754,9 @@ samco.cancel_order(order_number='200616000000350')
   "statusMessage" : "Order cancelled successfully"
 }
 ```
-### CancelOrderCO:
+<a name="cancelOrderCO"/>
+
+## CancelOrderCO
 
 The CancleOrder function `cancel_order_co()` is used for Cancellation/exit of CO orders by passing main leg Order number. 
 
@@ -713,7 +782,9 @@ samco.cancel_order_co(order_number='200617000000181')
   "statusMessage" : "Cover Order 200617000000181 exited successfully"
 }
 ```
-### CancelOrderBO:
+<a name="cancelOrderBO"/>
+
+## CancelOrderBO
 
 The CancleOrder function `cancel_order_bo()` is used for Cancellation/exit of BO orders pass main leg Order number. 
 If main leg is in Open/Pending state that order will be cancelled.
@@ -738,7 +809,9 @@ samco.cancel_order_bo(order_number='200617000000375')
   "statusMessage" : "Bracket Order exited successfully"
 }
 ```
-### TradeBook:
+<a name="tradeBook"/>
+
+## TradeBook
 
 The TradeBook function is `get_trade_book()`which gives details of all successfully executed orders placed by the user.
 
@@ -778,7 +851,10 @@ samco.get_trade_book()
     ]
 }
 ```
-### Positions:
+<a name="positions"/>
+
+## Positions
+
 The Postions function `get_positions_data()` gets the position details of the user (The details of equity, derivative, commodity, currency borrowed or owned by the user).
 
 #### Parameters:
@@ -831,7 +907,9 @@ samco.get_positions_data(position_type=samco.POSITION_TYPE_DAY)
     ]
 }
 ```
-### PositionConversion:
+<a name="positionConversion"/>
+
+## PositionConversion
 
 The PostionConversion function `convert_position()` is used to convert an existing position of a margin product to a different margin product type. All or a subset of an existing position quantity can be converted to a different product type.The available margin product types are MARGIN_INTRADAY_SQUAREOFF(MIS), CASHNCARRY(CNC), NORMAL(NRML).
 
@@ -861,7 +939,10 @@ samco.convert_position(body={
   "statusMsg" : "Position Conversion from MIS to CNC successful"
 }
 ```
-### PositionSquareoff:
+<a name="positionSquareOff"/>
+
+## PositionSquareOff
+
 The PositionSquareoff function `square_off_position()` helps the user to SqareOff existing position. Mostly used in day trading, in which user buy or sell a particular quantity of a stock and later in the day reverse the transaction to earn a profit. A user Covering his buy order with a sell order or a user covering his sell order with a buy order before market close for that particular day.
 
 #### Parameters:
@@ -895,7 +976,10 @@ samco.square_off_position(body={
   ]
 }
 ```
-### Holdings:
+<a name="holdings"/>
+
+## Holdings
+
 The Holdings function `get_holding()` helps the user to get the details of the Stocks which client is holding. Here, you will be able to get the Client holdings which are bought under ‘CNC’ product type and are not sold yet.
 
 #### Sample Holdings Request:
@@ -975,7 +1059,10 @@ samco.get_holding()
     ]
 }
 ```
-### IntraDayCandleData:
+<a name="intraDayCandleData"/>
+
+## IntraDayCandleData
+
 The IndexIntraDayCandleData function `get_intraday_candle_data()` gets the Intraday candle data such as Open, high, low, close and volume within specific time period per min for a specific symbol.
 
 
@@ -1054,7 +1141,10 @@ samco.get_intraday_candle_data(symbol_name='INFY',exchange=samco.EXCHANGE_NSE, f
   ]
 }
 ```
-### IndexIntraDayCandleData:
+<a name="indexIntraDayCandleData"/>
+
+### IndexIntraDayCandleData
+
 The IndexIntraDayCandleData function `get_index_intraday_candle_data()` gets the Index intraday candle data such as Open, high, low, close and volume within specific time period per min for a specific index.
 
 #### Parameters:
@@ -1124,7 +1214,10 @@ samco.get_index_intraday_candle_data(index_name='sensex', from_date='2020-06-16 
   ]
 }
 ```
-### HistoricalCandleData:
+<a name="historicalCandleData"/>
+
+## HistoricalCandleData:
+
 The HistoricalCandleData function `get_index_intraday_candle_data()` gets the historical candle data such as Open, high, low, close, last traded price and volume within specific dates for a specific symbol. From date is mandatory. End date is optional and defaults to Today.
 
 #### Parameters:
@@ -1165,6 +1258,8 @@ samco.get_historical_candle_data(symbol_name='BANKNIFTY18JUN2018500PE',exchange=
   ]
 }
 ```
+<a name="indexHistoricalCandleData"/>
+
 ### IndexHistoricalCandleData:
 The IndexHistoricalCandleData function `get_index_candle_data()` gets the Index historical candle data such as Open, high, low, close, last traded price and volume within specific dates for a specific index. From date is mandatory. End date is optional and defaults to Today.
 
@@ -1223,7 +1318,10 @@ samco.get_index_candle_data(index_name='NIFTY 200', from_date='2019-05-24',to_da
   ]
 }
 ```
-### StreamingData:
+<a name="streamingData"/>
+
+## StreamingData
+
 StockNote API platform provides the Broadcast API, as the most effective way to receive quote data for instruments across all exchanges during live market hours. The API provides continuous streaming data of quote based on user request, and primarily consists of fields such as last traded price, open, high, low, close, last traded quantity, last traded volume, last traded time etc.
 
 The API uses WebSocket protocol to establish a dedicated TCP connection after an HTTP handshake to receive streaming quotes and thereby provides seamless streaming of quote data. You need to use a WebSocket client to connect to our broadcast API. If you have already subscribed to our StockNote API services, you will be able to access broadcast API too.
@@ -1242,8 +1340,9 @@ Message Arrived:{"response":{"data":{"aPr":"0.00","aSz":"0","avgPr":"0.00","bPr"
 Message Arrived:{"response":{"data":{"aPr":"0.00","aSz":"0","avgPr":"0.00","bPr":"0.00","bSz":"0","c":"29.65","ch":"0.37","chPer":"1.25","h":"30.28","l":"27.24","lTrdT":"09 Jun 2020, 02:11:59 PM","ltp":"30.02","ltq":"0","ltt":"09 Jun 2020, 02:11:59 PM","lttUTC":"09 Jun 2020, 08:41:59 AM","o":"29.65",
 "oI":"","oIChg":"","sym":"-53","tBQ":"0","tSQ":"0","ttv":"0.00","vol":"0","yH":"0.00","yL":"0.00"},"streaming_type":"quote"}}
 ```
+<a name="logout"/>
 
-### Logout:
+## Logout
 Logging out user from the application.
 The Logout function name in python is `logout()`
 
