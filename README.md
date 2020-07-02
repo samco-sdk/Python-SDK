@@ -52,6 +52,8 @@ For specific details on parameters passed on the request, and details about API 
 
 * [SearchEquityDerivative](#searchequityderivative)
 * [Quote](#quote)
+* [OptionChain](#OptionChain)
+* [UserLimits](#userLimits)
  
 
 ## Using the API
@@ -279,7 +281,9 @@ samco.get_quote(symbol_name='BANKNIFTY18JUN2017900PE',exchange=samco.EXCHANGE_NF
     "oIChangePer": "58.05"
 }
 ```
-### OptionChain:
+<a name="optionChain"/>
+
+## OptionChain:
 
 The OptionChain function `get_option_chain()` can be used to search OptionChain for equity, derivatives and commodity scrips based on user provided search symbol and exchange name.
 
@@ -318,7 +322,10 @@ samco.get_option_chain(search_symbol_name='Reliance',exchange=samco.EXCHANGE_NFO
   ]
 }
 ```
-### UserLimits:
+<a name="userLimits"/>
+
+## UserLimits
+
 The UserLimits function `get_limits()` can be used  to gets the user cash balances, available margin for trading in equity and commodity segments.
 
 #### Sample UserLimit Request:
