@@ -59,7 +59,11 @@ For specific details on parameters passed on the request, and details about API 
 * [PlaceOrderCO](#placeOrderCO)
 * [ModifyOrder](#modifyOrder)
 * [OrderBook](#orderBook)
-* [TriggerOrder](#triggerOrder)
+* [TriggerOrders](#triggerOrders)
+* [OrderStatus](#orderStatus)
+* [CancelOrder](#cancelOrder)
+* [CancelOrderCO](#cancelOrderCO)
+* [CancelOrderBO](#cancelOrderBO)
  
 
 ## Using the API
@@ -669,7 +673,10 @@ samco.get_trigger_order_numbers(order_number="200617000000378")
     ]
 }
 ```
-### OrderStatus:
+<a name="orderStatus"/>
+
+## OrderStatus
+
 The OrderStatus function `get_order_status` is used to get status of an order placed previously. This API returns all states of the orders,but not limited to open, pending, and partially filled ones.
 
 #### Parameters:
@@ -708,7 +715,9 @@ samco.get_order_status(order_number="200617000000378")
     }
 }
 ```
-### CancelOrder:
+<a name="cancelOrder"/>
+
+## CancelOrder:
 
 The CancleOrder function `cancel_order()` is used to cancel an order which is in open or pending status in system. In other words, cancellation cannot be initiated for already Executed, Rejected orders.This is for CNC, MIS and NRML Orders.
 
@@ -730,7 +739,9 @@ samco.cancel_order(order_number='200616000000350')
   "statusMessage" : "Order cancelled successfully"
 }
 ```
-### CancelOrderCO:
+<a name="cancelOrderCO"/>
+
+## CancelOrderCO
 
 The CancleOrder function `cancel_order_co()` is used for Cancellation/exit of CO orders by passing main leg Order number. 
 
@@ -756,7 +767,9 @@ samco.cancel_order_co(order_number='200617000000181')
   "statusMessage" : "Cover Order 200617000000181 exited successfully"
 }
 ```
-### CancelOrderBO:
+<a name="cancelOrderBO"/>
+
+## CancelOrderBO
 
 The CancleOrder function `cancel_order_bo()` is used for Cancellation/exit of BO orders pass main leg Order number. 
 If main leg is in Open/Pending state that order will be cancelled.
