@@ -51,6 +51,7 @@ For specific details on parameters passed on the request, and details about API 
 ## List of API
 
 * [SearchEquityDerivative](#searchequityderivative)
+* [Quote](#quote)
  
 
 ## Using the API
@@ -175,7 +176,10 @@ samco.search_equity_derivative(search_symbol_name="BANKNIFTY20JUN",exchange=samc
     ]
 }
 ```
-### Quote:
+<a name="quote"/>
+
+## Quote
+
 Get market depth details for a specific equity scrip including but not limited to values like last trade price, previous close price, change value, change percentage, bids/asks, upper and lower circuit limits etc. This helps user with market picture of an equity scrip using which he will be able to place an order.
 The Quote function name in python is `get_quote()`
 
