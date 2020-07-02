@@ -448,24 +448,24 @@ The PlaceOrderBO function `place_order_bo()` can be used to place an equity/deri
 symbol_name,exchange,transactionType,orderType,price,quantity,disclosedQuantity,orderValidity,productType,trailingStopLoss,stopLossValue,squareOffValue,valueType,priceType,
 ```
 #### Sample PlaceOrderBO Request:
-```python
-samco.place_order_bo(body={
-"symbolName":"TCS",
-"exchange":"BSE",
-"transactionType":samco.TRANSACTION_TYPE_BUY,
-"orderType":samco.ORDER_TYPE_LIMIT,
-"quantity": "10",
-"disclosedQuantity":"1",
-"price":"2021",
-"priceType":"LTP",
-"valueType":"Absolute",
-"orderValidity":samco.VALIDITY_DAY,
-"productType":samco.PRODUCT_BO,
-"squareOffValue":"15.00",
-"stopLossValue":"5.00",
-"trailingStopLoss":"5"
-})
-```
+
+    samco.place_order_bo(body={
+    "symbolName":"TCS",
+    "exchange":"BSE",
+    "transactionType":samco.TRANSACTION_TYPE_BUY,
+    "orderType":samco.ORDER_TYPE_LIMIT,
+    "quantity": "10",
+    "disclosedQuantity":"1",
+    "price":"2021",
+    "priceType":"LTP",
+    "valueType":"Absolute",
+    "orderValidity":samco.VALIDITY_DAY,
+    "productType":samco.PRODUCT_BO,
+    "squareOffValue":"15.00",
+    "stopLossValue":"5.00",
+    "trailingStopLoss":"5"
+    })
+
 #### Sample PlaceOrderBO Response:
 ```python
 {
@@ -507,20 +507,20 @@ The PlaceOrderCO function `place_order_co()` can be used to place an equity/deri
 symbol_name,exchange,transactionType,orderType,price,quantity,disclosedQuantity,orderValidity,productType,marketProtection,triggerPrice
 ```
 #### Sample PlaceOrderCO Request:
-```Python
-samco.place_order_co(body={
-"symbolName":"INFY",
-"exchange":samco.EXCHANGE_NSE,
-"transactionType":samco.TRANSACTION_TYPE_BUY,
-"orderType":samco.ORDER_TYPE_LIMIT,
-"price":"679",
-"quantity": "15",
-"disclosedQuantity":"",
-"orderValidity":samco.VALIDITY_DAY,
-"productType":samco.PRODUCT_CO,
-"afterMarketOrderFlag":"NO",
-"triggerPrice":"646"})
-```
+
+    samco.place_order_co(body={
+    "symbolName":"INFY",
+    "exchange":samco.EXCHANGE_NSE,
+    "transactionType":samco.TRANSACTION_TYPE_BUY,
+    "orderType":samco.ORDER_TYPE_LIMIT,
+    "price":"679",
+    "quantity": "15",
+    "disclosedQuantity":"",
+    "orderValidity":samco.VALIDITY_DAY,
+    "productType":samco.PRODUCT_CO,
+    "afterMarketOrderFlag":"NO",
+    "triggerPrice":"646"})
+
 #### Sample PlaceOrderCO Response:
 ```Python
 {
@@ -563,9 +563,9 @@ orderType,quantity,disclosedQuantity,orderValidity,price,triggerPrice,parentOrde
 ```
 
 #### Sample ModifyOrder Request:
-```python
-samco.modify_order(order_number='200616000000350',body={"quantity": "50"})
-```
+
+    samco.modify_order(order_number='200616000000350',body={"quantity": "50"})
+
 #### Sample ModifyOrder Response:
 ```python
 {
@@ -603,9 +603,9 @@ samco.modify_order(order_number='200616000000350',body={"quantity": "50"})
 The OrderBook function `get_order_book()` retrieves and displays details of all orders placed by the user on a specific day. This API returns all states of the orders, namely, open, pending, rejected and executed ones.
 
 #### Sample OrderBook Request:
-```python
-samco.get_order_book()
-```
+
+    samco.get_order_book()
+
 #### Sample OrderBook Response:
 ```Python
 {
@@ -662,9 +662,9 @@ order_number
 ```
 
 #### Sample TriggerOrders Request:
-```python
-samco.get_trigger_order_numbers(order_number="200617000000378")
-```
+
+    samco.get_trigger_order_numbers(order_number="200617000000378")
+
 #### Sample TriggerOrders Response:
 ```python
 {
@@ -699,9 +699,9 @@ The OrderStatus function `get_order_status` is used to get status of an order pl
 order_number
 ```
 #### Sample OrderStatus Request:
-```python
-samco.get_order_status(order_number="200617000000378")
-```
+
+    samco.get_order_status(order_number="200617000000378")
+
 #### Sample OrderStatus Response:
 ```python
 {
@@ -741,9 +741,9 @@ The CancleOrder function `cancel_order()` is used to cancel an order which is in
 order_number
 ```
 #### Sample CancelOrder Request:
-```python
-samco.cancel_order(order_number='200616000000350')
-```
+
+    samco.cancel_order(order_number='200616000000350')
+
 #### sample CancelOrder Response:
 ```python
 {
@@ -769,9 +769,9 @@ If the main leg is executed and if Stop loss is hit, API will return error messa
 order_number
 ```
 #### Sample CancelOrderCO Request:
-```python
-samco.cancel_order_co(order_number='200617000000181')
-```
+
+    samco.cancel_order_co(order_number='200617000000181')
+
 #### sample CancelOrderCO Response:
 ```python
 {
@@ -796,9 +796,9 @@ If the main leg is executed and if either of Stop loss or target is hit, API wil
 order_number
 ```
 #### Sample CancelOrderBO Request:
-```python
-samco.cancel_order_bo(order_number='200617000000375')
-```
+
+    samco.cancel_order_bo(order_number='200617000000375')
+
 #### sample CancelOrderBO Response:
 ```python
 {
@@ -816,9 +816,9 @@ samco.cancel_order_bo(order_number='200617000000375')
 The TradeBook function is `get_trade_book()`which gives details of all successfully executed orders placed by the user.
 
 #### Sample TradeBook Request:
-```python
-samco.get_trade_book()
-```
+
+    samco.get_trade_book()
+
 #### Sample TradeBook Response:
 ```python
 {
@@ -862,9 +862,9 @@ The Postions function `get_positions_data()` gets the position details of the us
 position_type
 ```
 #### Sample Positions Request:
-```Python
-samco.get_positions_data(position_type=samco.POSITION_TYPE_DAY)
-```
+
+    samco.get_positions_data(position_type=samco.POSITION_TYPE_DAY)
+
 #### Sample Positions Response:
 ```python
 {
@@ -918,18 +918,18 @@ The PostionConversion function `convert_position()` is used to convert an existi
 symbolName,exchange,transactionType,positionType,quantityToConvert,fromProductType,toProductType,netQuantity
 ```
 ##### Sample PositionConverstion Request:
-```python
-samco.convert_position(body={ 
-  "symbolName":"TSC",
-  "exchange":"BSE",
-  "transactionType":"BUY",
-  "positionType":"DAY",
-  "quantityToConvert": "2",
-   "fromProductType":"MIS",
-   "toProductType":"CNC",
-   "netQuantity":"2"
-})
-```
+
+    samco.convert_position(body={ 
+      "symbolName":"TSC",
+      "exchange":"BSE",
+      "transactionType":"BUY",
+      "positionType":"DAY",
+      "quantityToConvert": "2",
+       "fromProductType":"MIS",
+       "toProductType":"CNC",
+       "netQuantity":"2"
+    })
+
 #### Sample PostionConverstion Response:
 ```python
 {
@@ -950,19 +950,19 @@ The PositionSquareoff function `square_off_position()` helps the user to SqareOf
 symbolName,exchange,transactionType,productType,netQuantity
 ```
 ##### Sample PositionSquareoff Request:
-```
-samco.square_off_position(body={ 
-    "positionSquareOffRequestList": [
-    {
-        "exchange": samco.EXCHANGE_NSE,
-        "symbolName":"TCS",
-        "productType":samco.PRODUCT_MIS,
-        "netQuantity":"1",
-        "transactionType":samco.TRANSACTION_TYPE_BUY
-    }
-   ]
-})
-```
+
+    samco.square_off_position(body={ 
+        "positionSquareOffRequestList": [
+        {
+            "exchange": samco.EXCHANGE_NSE,
+            "symbolName":"TCS",
+            "productType":samco.PRODUCT_MIS,
+            "netQuantity":"1",
+            "transactionType":samco.TRANSACTION_TYPE_BUY
+        }
+       ]
+    })
+
 #### Sample PositionSquareoff Response:
 ```python
 {
@@ -983,9 +983,9 @@ samco.square_off_position(body={
 The Holdings function `get_holding()` helps the user to get the details of the Stocks which client is holding. Here, you will be able to get the Client holdings which are bought under ‘CNC’ product type and are not sold yet.
 
 #### Sample Holdings Request:
-```python
-samco.get_holding()
-```
+
+    samco.get_holding()
+
 #### Sample Holdings Response:
 ```python
 {
@@ -1071,9 +1071,9 @@ The IndexIntraDayCandleData function `get_intraday_candle_data()` gets the Intra
 symbol_name,exchange,from_date,to_date
 ```
 #### Sample IntraDayCandleData Request:
-```Python
-samco.get_intraday_candle_data(symbol_name='INFY',exchange=samco.EXCHANGE_NSE, from_date='2020-06-17 10:22:00',to_date='2020-06-17 10:28:00')
-```
+
+    samco.get_intraday_candle_data(symbol_name='INFY',exchange=samco.EXCHANGE_NSE, from_date='2020-06-17 10:22:00',to_date='2020-06-17 10:28:00')
+
 #### Sample IntraDayCandleData Response:
 ```python
 {
@@ -1152,9 +1152,9 @@ The IndexIntraDayCandleData function `get_index_intraday_candle_data()` gets the
 index_name,from_date,to_date
 ```
 #### Sample IndexIntraDayCandleData Request:
-```Python
-samco.get_index_intraday_candle_data(index_name='sensex', from_date='2020-06-16 09:23:00',to_date='2020-06-16 9:28:00')
-```
+
+    samco.get_index_intraday_candle_data(index_name='sensex', from_date='2020-06-16 09:23:00',to_date='2020-06-16 9:28:00')
+
 #### Sample IndexIntraDayCandleData Response:
 ```Python
 {
@@ -1226,9 +1226,9 @@ symbol_name,exchange,from_date,to_date
 ```
 
 #### Sample HistoricalCandleData Request:
-```python
-samco.get_historical_candle_data(symbol_name='BANKNIFTY18JUN2018500PE',exchange=samco.EXCHANGE_NFO, from_date='2020-06-14',to_date='2020-06-17')
-```
+
+    samco.get_historical_candle_data(symbol_name='BANKNIFTY18JUN2018500PE',exchange=samco.EXCHANGE_NFO, from_date='2020-06-14',to_date='2020-06-17')
+
 #### Sample HistoricalCandleData respone:
 ```python
 {
