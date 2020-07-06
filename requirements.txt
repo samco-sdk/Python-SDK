@@ -3,7 +3,7 @@ six >= 1.10
 python_dateutil >= 2.5.3
 setuptools >= 21.0.0
 urllib3 >= 1.15.1
-requests==2.18.1
+requests==2.20.1
 future==0.16
 websocket==0.2.1
 websocket_client==0.57.0
