@@ -1,4 +1,4 @@
-# Python SDK for Stocknote API
+# StockNoteBridge - Python SDK for Stocknote API
 Official Python SDK for accessing and integrating Stocknote API
 
 This documentation covers details of the Python bridge / SDK provided by SAMCO, for accessing the [SAMCO Stocknote APIs](https://developers.stocknote.com/api/?python#stocknote-api-documentation).
