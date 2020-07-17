@@ -52,6 +52,7 @@ For specific details on parameters passed on the request, and details about API 
 * [Login](#login)
 * [SearchEquityDerivative](#searchequityderivative)
 * [Quote](#quote)
+* [IndexQuote](#indexQuote)
 * [OptionChain](#OptionChain)
 * [UserLimits](#userLimits)
 * [PlaceOrder](#placeOrder)
@@ -306,6 +307,43 @@ The Quote function name in python is `get_quote()`
     "oIChangePer": "58.05"
 }
 ```
+<a name="indexQuote"/>
+
+## IndexQuote
+
+The IndexQuote function name in python is `getindex_quote()`
+
+#### Parameters:
+```python
+`index_name`,
+```
+#### Sample IndexQuote request:
+
+    samco.getindex_quote(index_name="Nifty 200")
+
+#### Sample IndexQuote Response:
+```python
+{
+  "serverTime": "17/07/20 15:07:20",
+  "msgId": "379748ee-d02e-48d3-8b6f-dc1d6da6a2df",
+  "status": "Success",
+  "statusMessage": "Index Quote details retrieved successfully",
+  "indexName": "Nifty 200",
+  "listingId": "-26",
+  "lastTradedTime": "2020-07-17 15:07:19.0",
+  "spotPrice": "5615.80",
+  "averagePrice": "0.00",
+  "openValue": "5551.85",
+  "highValue": "5619.65",
+  "lowValue": "5550.75",
+  "closeValue": "5542.30",
+  "totalBuyQuantity": "0",
+  "totalSellQuantity": "0",
+  "totalTradedVolume": "0",
+  "oIChangePer": "0"
+}
+```
+
 <a name="optionChain"/>
 
 ## OptionChain:
@@ -1068,11 +1106,11 @@ The IndexIntraDayCandleData function `get_intraday_candle_data()` gets the Intra
 
 #### Parameters:
 ```python
-symbol_name,exchange,from_date,to_date
+symbol_name,exchange,from_date,to_date,interval
 ```
 #### Sample IntraDayCandleData Request:
 
-    samco.get_intraday_candle_data(symbol_name='INFY',exchange=samco.EXCHANGE_NSE, from_date='2020-06-17 10:22:00',to_date='2020-06-17 10:28:00')
+    samco.get_intraday_candle_data(symbol_name='INFY',exchange=samco.EXCHANGE_NSE, from_date='2020-06-17 10:22:00',to_date='2020-06-17 10:28:00',interval=1)
 
 #### Sample IntraDayCandleData Response:
 ```python
@@ -1149,11 +1187,11 @@ The IndexIntraDayCandleData function `get_index_intraday_candle_data()` gets the
 
 #### Parameters:
 ```python
-index_name,from_date,to_date
+index_name,from_date,to_date,interval
 ```
 #### Sample IndexIntraDayCandleData Request:
 
-    samco.get_index_intraday_candle_data(index_name='sensex', from_date='2020-06-16 09:23:00',to_date='2020-06-16 9:28:00')
+    samco.get_index_intraday_candle_data(index_name='sensex', from_date='2020-06-16 09:23:00',to_date='2020-06-16 9:28:00',interval=1)
 
 #### Sample IndexIntraDayCandleData Response:
 ```Python
