@@ -1069,11 +1069,11 @@ The IndexIntraDayCandleData function `get_intraday_candle_data()` gets the Intra
 
 #### Parameters:
 ```python
-symbol_name,exchange,from_date,to_date,interval
+symbol_name,exchange,from_date,to_date
 ```
 #### Sample IntraDayCandleData Request:
 
-    samco.get_intraday_candle_data(symbol_name='INFY',exchange=samco.EXCHANGE_NSE, from_date='2020-06-17 10:22:00',to_date='2020-06-17 10:28:00',interval=1)
+    samco.get_intraday_candle_data(symbol_name='INFY',exchange=samco.EXCHANGE_NSE, from_date='2020-06-17 10:22:00',to_date='2020-06-17 10:28:00')
 
 #### Sample IntraDayCandleData Response:
 ```python
@@ -1150,11 +1150,11 @@ The IndexIntraDayCandleData function `get_index_intraday_candle_data()` gets the
 
 #### Parameters:
 ```python
-index_name,from_date,to_date,interval
+index_name,from_date,to_date
 ```
 #### Sample IndexIntraDayCandleData Request:
 
-    samco.get_index_intraday_candle_data(index_name='sensex', from_date='2020-06-16 09:23:00',to_date='2020-06-16 9:28:00',interval=1)
+    samco.get_index_intraday_candle_data(index_name='sensex', from_date='2020-06-16 09:23:00',to_date='2020-06-16 9:28:00')
 
 #### Sample IndexIntraDayCandleData Response:
 ```Python
