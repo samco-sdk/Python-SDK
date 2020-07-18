@@ -52,7 +52,6 @@ For specific details on parameters passed on the request, and details about API 
 * [Login](#login)
 * [SearchEquityDerivative](#searchequityderivative)
 * [Quote](#quote)
-* [IndexQuote](#indexQuote)
 * [OptionChain](#OptionChain)
 * [UserLimits](#userLimits)
 * [PlaceOrder](#placeOrder)
@@ -305,42 +304,6 @@ The Quote function name in python is `get_quote()`
     "listingId": "41870_NFO",
     "openInterestChange": "8800",
     "oIChangePer": "58.05"
-}
-```
-<a name="indexQuote"/>
-
-## IndexQuote
-
-The IndexQuote function name in python is `getindex_quote()`
-
-#### Parameters:
-```python
-`index_name`,
-```
-#### Sample IndexQuote request:
-
-    samco.getindex_quote(index_name="Nifty 200")
-
-#### Sample IndexQuote Response:
-```python
-{
-  "serverTime": "17/07/20 15:07:20",
-  "msgId": "379748ee-d02e-48d3-8b6f-dc1d6da6a2df",
-  "status": "Success",
-  "statusMessage": "Index Quote details retrieved successfully",
-  "indexName": "Nifty 200",
-  "listingId": "-26",
-  "lastTradedTime": "2020-07-17 15:07:19.0",
-  "spotPrice": "5615.80",
-  "averagePrice": "0.00",
-  "openValue": "5551.85",
-  "highValue": "5619.65",
-  "lowValue": "5550.75",
-  "closeValue": "5542.30",
-  "totalBuyQuantity": "0",
-  "totalSellQuantity": "0",
-  "totalTradedVolume": "0",
-  "oIChangePer": "0"
 }
 ```
 
