@@ -1,9 +1,9 @@
-# StockNoteBridge - Python SDK for Stocknote API
-Official Python SDK for accessing and integrating Stocknote API
+# StockNoteBridge - Python SDK for Samco API
+Official Python SDK for accessing and integrating Samco API
 
-This documentation covers details of the Python bridge / SDK provided by SAMCO, for accessing the [SAMCO Stocknote APIs](https://developers.stocknote.com/api/?python#stocknote-api-documentation).
+This documentation covers details of the Python bridge / SDK provided by SAMCO, for accessing the [SAMCO APIs](https://developers.stocknote.com/api/?python#stocknote-api-documentation).
 
-The primary purpose of this Python Bridge is to help our customers quickly create python based client scripts using our SDK and integrate with StockNote APIs. Our Python Bridge provides a wrapper over the RESTful StockNote APIs where the HTTP calls have been converted to method calls with JSON responses. Websocket connections are handled automatically with the library.
+The primary purpose of this Python Bridge is to help our customers quickly create python based client scripts using our SDK and integrate with Samco APIs. Our Python Bridge provides a wrapper over the RESTful Samco APIs where the HTTP calls have been converted to method calls with JSON responses. Websocket connections are handled automatically with the library.
 
 Please refer the below documentation for details on installation, set up and API specific sample code/request-responses to create your own Python client code.
 
@@ -44,9 +44,9 @@ These modules can also be installed using `pip`
 ## Getting started with API
 
 ### Overview
-Stocknote python SDK is a python client library for easily accessing the stocknote API. It exposes the individual APIs as python method calls and provides an easy-to-use interface for implementing your strategies in Python language. 
+Samco python SDK is a python client library for easily accessing the stocknote API. It exposes the individual APIs as python method calls and provides an easy-to-use interface for implementing your strategies in Python language. 
 
-For specific details on parameters passed on the request, and details about API response, please refer our [Stocknote API documentation](https://developers.stocknote.com/api/?python#stocknote-api-documentation).
+For specific details on parameters passed on the request, and details about API response, please refer our [Samco API documentation](https://developers.stocknote.com/api/?python#stocknote-api-documentation).
 
 ## List of API
 * [Login](#login)
@@ -91,7 +91,7 @@ from snapi_py_client.snapi_bridge import StocknoteAPIPythonBridge
 ```python
 samco=StocknoteAPIPythonBridge()
 ```
-3. Login to access Stocknote API by providing below parameters.
+3. Login to access Samco API by providing below parameters.
 
 <a name="login"/>
 
