@@ -1,7 +1,7 @@
 # StockNoteBridge - Python SDK for Stocknote API
 Official Python SDK for accessing and integrating Stocknote API
 
-This documentation covers details of the Python bridge / SDK provided by SAMCO, for accessing the [SAMCO Stocknote APIs](https://developers.stocknote.com/api/?python#stocknote-api-documentation).
+This documentation covers details of the Python bridge / SDK provided by SAMCO, for accessing the [SAMCO Stocknote APIs](https://docs-tradeapi.samco.in).
 
 The primary purpose of this Python Bridge is to help our customers quickly create python based client scripts using our SDK and integrate with StockNote APIs. Our Python Bridge provides a wrapper over the RESTful StockNote APIs where the HTTP calls have been converted to method calls with JSON responses. Websocket connections are handled automatically with the library.
 
@@ -46,34 +46,41 @@ These modules can also be installed using `pip`
 ### Overview
 Stocknote python SDK is a python client library for easily accessing the stocknote API. It exposes the individual APIs as python method calls and provides an easy-to-use interface for implementing your strategies in Python language. 
 
-For specific details on parameters passed on the request, and details about API response, please refer our [Stocknote API documentation](https://developers.stocknote.com/api/?python#stocknote-api-documentation).
+For specific details on parameters passed on the request, and details about API response, please refer our [Stocknote API documentation](https://docs-tradeapi.samco.in).
 
 ## List of API
 * [Login](#login)
 * [SearchEquityDerivative](#searchequityderivative)
 * [Quote](#quote)
-* [OptionChain](#OptionChain)
-* [UserLimits](#userLimits)
-* [PlaceOrder](#placeOrder)
-* [PlaceOrderBO](#placeOrderBO)
-* [PlaceOrderCO](#placeOrderCO)
-* [ModifyOrder](#modifyOrder)
-* [OrderBook](#orderBook)
-* [TriggerOrders](#triggerOrders)
-* [OrderStatus](#orderStatus)
-* [CancelOrder](#cancelOrder)
-* [CancelOrderCO](#cancelOrderCO)
-* [CancelOrderBO](#cancelOrderBO)
-* [TradeBook](#tradeBook)
+* [IndexQuote](#indexquote)
+* [MultiQuote](#multiquote)
+* [OptionChain](#optionchain)
+* [FutureChain](#futurechain)
+* [UserLimits](#userlimits)
+* [PlaceOrder](#placeorder)
+* [PlaceOrderBO](#placeorderbo)
+* [PlaceOrderCO](#placeorderco)
+* [ModifyOrder](#modifyorder)
+* [OrderBook](#orderbook)
+* [TriggerOrders](#triggerorders)
+* [OrderStatus](#orderstatus)
+* [AddGtt](#addgtt)
+* [ModifyGtt](#modifygtt)
+* [DeleteGtt](#deletegtt)
+* [AddOco](#addoco)
+* [ModifyOco](#modifyoco)
+* [DeleteOco](#deleteoco)
+* [ListGttOco](#listgttoco)
+* [TradeBook](#tradebook)
 * [Positons](#positions)
-* [PositionConversion](#positionConversion)
-* [PositionSquareOff](#positionSquareOff)
+* [PositionConversion](#positionconversion)
+* [PositionSquareOff](#positionsquareoff)
 * [Holdings](#holdings)
-* [IntraDayCandleData](#intraDayCandleData)
-* [IndexIntraDayCandleData](#indexIntraDayCandleData)
-* [HistoricalCandleData](#historicalCandleData)
-* [IndexHistoricalCandleData](#indexHistoricalCandleData)
-* [StreamingData](#streamingData)
+* [IntraDayCandleData](#intradaycandledata)
+* [IndexIntraDayCandleData](#indexintradaycandledata)
+* [HistoricalCandleData](#historicalcandledata)
+* [IndexHistoricalCandleData](#indexhistoricalcandledata)
+* [StreamingData](#streamingdata)
 * [Logout](#logout)
 
 
@@ -151,8 +158,9 @@ search_symbol_name,exchange
 ```
 #### Sample Search Request:
 
-    samco.search_equity_derivative(search_symbol_name="BANKNIFTY20JUN",exchange=samco.EXCHANGE_NFO)
-
+```python
+  samco.search_equity_derivative(search_symbol_name="BANKNIFTY20JUN",exchange=samco.EXCHANGE_NFO)
+```
 #### Sample Search Response:
 ```python
 {
@@ -216,7 +224,7 @@ The Quote function name in python is `get_quote()`
 ```
 #### Sample Quote request:
 
-    samco.get_quote(symbol_name='BANKNIFTY18JUN2017900PE',exchange=samco.EXCHANGE_NFO)
+  samco.get_quote(symbol_name='BANKNIFTY18JUN2017900PE',exchange=samco.EXCHANGE_NFO)
 
 #### Sample Quote Response:
 ```python
@@ -307,7 +315,238 @@ The Quote function name in python is `get_quote()`
 }
 ```
 
-<a name="optionChain"/>
+<a name="multiquote"/>
+
+## MultiQuote
+
+Get market depth details for multiple equity scrips including but not limited to values like last trade price, previous close price, change value, change percentage, bids/asks, upper and lower circuit limits, etc. This helps users with a comprehensive market picture of multiple equity scrips, enabling them to make informed trading decisions. The Multi Quote function name in Python is `get_multi_quote()`. We will send the values of all parameters in an array.
+
+#### Parameters:
+```text
+NFO,BFO,NSE,BSE,MCX,CDS,MFO,INDEX
+```
+#### Sample Multi Quote request:
+
+```python
+samco.multi_quote(body = {
+    "INDEX":["NIFTY 50","NIFTY BANK"],
+    "NFO": ["FINNIFTY2451416500CE"]
+})
+```
+#### Sample Multi Quote Response:
+```json
+{
+  "serverTime": "29/05/24 15:26:24",
+  "msgId": "f70d9c1d-dda1-4742-bc62-26f15995583b",
+  "status": "Success",
+  "statusMessage": "Multiquotes data retrieved successfully",
+  "invalidSymbol": [
+    "FINNIFTY2451416500CE"
+  ],
+  "multiQuotes": [
+    {
+      "exchange": "NSE",
+      "symbolName": "Nifty 50",
+      "tradingSymbol": "Nifty 50",
+      "companyName": "Nifty 50",
+      "lotSize": "-",
+      "averagePrice": "22348.05",
+      "totalTradeVolume": "0",
+      "symbol": "-21",
+      "lastTradeTime": "03 May 2024, 03:32:16 PM",
+      "lastTradeQuantity": "0",
+      "lastTradePrice": "22475.85",
+      "change": "-172.35",
+      "changePercent": "-0.76",
+      "open": "22766.35",
+      "close": "22475.85",
+      "previousClose": "22648.20",
+      "low": "22348.05",
+      "high": "22794.70",
+      "tickSize": "-",
+      "bidSize": "0",
+      "bidPrice": "0.00",
+      "totalTradedValue": "0.00",
+      "askSize": "0",
+      "askPrice": "0.00"
+    },
+    {
+      "exchange": "NSE",
+      "symbolName": "Nifty Bank",
+      "tradingSymbol": "Nifty Bank",
+      "companyName": "Nifty Bank",
+      "lotSize": "-",
+      "averagePrice": "48659.70",
+      "totalTradeVolume": "0",
+      "symbol": "-22",
+      "lastTradeTime": "03 May 2024, 03:32:16 PM",
+      "lastTradeQuantity": "0",
+      "lastTradePrice": "48923.55",
+      "change": "-307.50",
+      "changePercent": "-0.62",
+      "open": "49375.05",
+      "close": "48923.55",
+      "previousClose": "49231.05",
+      "low": "48659.70",
+      "high": "49607.75",
+      "tickSize": "-",
+      "bidSize": "0",
+      "bidPrice": "0.00",
+      "totalTradedValue": "0.00",
+      "askSize": "0",
+      "askPrice": "0.00",
+      "iv": "0.00"
+    }
+  ]
+}
+
+```
+
+
+<a name="indexquote"/>
+
+## IndexQuote
+
+Get detailed market information for a specific index including values such as index name, listing ID, last traded time, spot price, change percentage, average price, open value, high value, low value, close value, total buy quantity, total sell quantity, total traded value, total traded volume, and change. This comprehensive data provides users with an in-depth market picture of an index, enabling them to make informed trading decisions.
+The Index Quote function name in Python is `index_quote()`.
+
+#### Parameters:
+```python
+indexName
+```
+#### Sample Quote request:
+
+```python
+  samco.index_quote('NIFTY NEXT 50')
+```
+
+#### Sample Quote Response:
+```json
+{
+  "serverTime": "29/05/24 15:31:59",
+  "msgId": "d8c2b0fb-e18f-457c-9a60-7e70a63a3636",
+  "status": "Success",
+  "statusMessage": "Index Quote details retrieved successfully",
+  "indexDetails": [
+    {
+      "indexName": "Nifty Next 50",
+      "listingId": "-23",
+      "lastTradedTime": "2024-05-29 15:31:55.0",
+      "spotPrice": 68070.5,
+      "changePercentage": -0.69,
+      "averagePrice": 0,
+      "openValue": 68191,
+      "highValue": 68535.45,
+      "lowValue": 67899.85,
+      "closeValue": 68070.5,
+      "totalBuyQuantity": 0,
+      "totalSellQuantity": 0,
+      "totalTradedValue": 0,
+      "totalTradedVolume": 0,
+      "change": -475.1
+    }
+  ]
+}
+```
+
+<a name="futurechain"/>
+
+## FutureChain:
+
+The `get_future_chain()` function can be used to search for future contracts for equity, derivatives, and commodity scrips based on user-provided search symbols and exchange names. This function returns detailed information about the futures contract including trading symbols, exchange, expiry date, and market data such as spot price, last traded price, open interest, and bid/ask details.
+
+#### Parameters:
+```python
+  search_symbol_name,exchange,expiry_date,strike_price,option_type
+```
+#### Sample OptionChain Request:
+
+```python
+  samco.get_option_chain(search_symbol_name='Reliance',exchange=samco.EXCHANGE_NFO,expiry_date='2020-07-30',strike_price='1961.40',option_type='PE')
+```
+#### Sample OptionChain Response:
+```python
+{
+  "serverTime": "29/05/24 16:04:46",
+  "msgId": "d8523da7-77c2-4ffa-9dd8-69ce69d09dc6",
+  "status": "Success",
+  "statusMessage": "Future chain details retrived successfully. ",
+  "futureChainDetails": [
+    {
+      "tradingSymbol": "SENSEX24MAYFUT",
+      "exchange": "BFO",
+      "symbol": "859479_BFO",
+      "expiryDate": "2024-05-31",
+      "instrument": "IF",
+      "underLyingSymbol": "SENSEX",
+      "spotPrice": 74502.9,
+      "lastTradedPrice": "74667.05",
+      "openInterest": 3130,
+      "openInterestInLot": 313,
+      "openInterestChange": 3130,
+      "openInterestChangeInLot": 313,
+      "oichangePer": "Infinity",
+      "volume": 8620,
+      "bestBids": [
+        {
+          "number": 1,
+          "quantity": "0",
+          "price": "0.0000"
+        },
+        {
+          "number": 2,
+          "quantity": "0",
+          "price": "0.0000"
+        },
+        {
+          "number": 3,
+          "quantity": "0",
+          "price": "0.0000"
+        },
+        {
+          "number": 4,
+          "quantity": "0",
+          "price": "0.0000"
+        },
+        {
+          "number": 5,
+          "quantity": "0",
+          "price": "0.0000"
+        }
+      ],
+      "bestAsks": [
+        {
+          "number": 1,
+          "quantity": "0",
+          "price": "0.0000"
+        },
+        {
+          "number": 2,
+          "quantity": "0",
+          "price": "0.0000"
+        },
+        {
+          "number": 3,
+          "quantity": "0",
+          "price": "0.0000"
+        },
+        {
+          "number": 4,
+          "quantity": "0",
+          "price": "0.0000"
+        },
+        {
+          "number": 5,
+          "quantity": "0",
+          "price": "0.0000"
+        }
+      ]
+    }
+  ]
+}
+```
+
+<a name="optionchain"/>
 
 ## OptionChain:
 
@@ -348,7 +587,10 @@ search_symbol_name,exchange,expiry_date,strike_price,option_type
   ]
 }
 ```
-<a name="userLimits"/>
+
+
+
+<a name="userlimits"/>
 
 ## UserLimits
 
@@ -356,7 +598,7 @@ The UserLimits function `get_limits()` can be used  to gets the user cash balanc
 
 #### Sample UserLimit Request:
 
-    samco.get_limits()
+  samco.get_limits()
 
 #### Sample UserLimit Response:
 ```python
@@ -381,7 +623,7 @@ The UserLimits function `get_limits()` can be used  to gets the user cash balanc
   }
 }
 ```
-<a name="placeOrder"/>
+<a name="placeorder"/>
 
 ## PlaceOrder
 
@@ -438,7 +680,7 @@ symbol_name,exchange,transactionType,orderType,price,quantity,disclosedQuantity,
   }
 }
 ```
-<a name="placeOrderBO"/>
+<a name="placeorderbo"/>
 
 ## PlaceOrderBO
 
@@ -450,7 +692,7 @@ symbol_name,exchange,transactionType,orderType,price,quantity,disclosedQuantity,
 ```
 #### Sample PlaceOrderBO Request:
 
-    samco.place_order_bo(body={
+  samco.place_order_bo(body={
     "symbolName":"TCS",
     "exchange":"BSE",
     "transactionType":samco.TRANSACTION_TYPE_BUY,
@@ -465,7 +707,7 @@ symbol_name,exchange,transactionType,orderType,price,quantity,disclosedQuantity,
     "squareOffValue":"15.00",
     "stopLossValue":"5.00",
     "trailingStopLoss":"5"
-    })
+  })
 
 #### Sample PlaceOrderBO Response:
 ```python
@@ -497,7 +739,7 @@ symbol_name,exchange,transactionType,orderType,price,quantity,disclosedQuantity,
   }
 }
 ```
-<a name="placeOrderCO"/>
+<a name="placeorderco"/>
 
 ## PlaceOrderCO
 
@@ -509,7 +751,7 @@ symbol_name,exchange,transactionType,orderType,price,quantity,disclosedQuantity,
 ```
 #### Sample PlaceOrderCO Request:
 
-    samco.place_order_co(body={
+  samco.place_order_co(body={
     "symbolName":"INFY",
     "exchange":samco.EXCHANGE_NSE,
     "transactionType":samco.TRANSACTION_TYPE_BUY,
@@ -520,7 +762,8 @@ symbol_name,exchange,transactionType,orderType,price,quantity,disclosedQuantity,
     "orderValidity":samco.VALIDITY_DAY,
     "productType":samco.PRODUCT_CO,
     "afterMarketOrderFlag":"NO",
-    "triggerPrice":"646"})
+    "triggerPrice":"646"
+  })
 
 #### Sample PlaceOrderCO Response:
 ```Python
@@ -552,7 +795,7 @@ symbol_name,exchange,transactionType,orderType,price,quantity,disclosedQuantity,
   }
 }
 ```
-<a name="modifyOrder"/>
+<a name="modifyorder"/>
 
 ## ModifyOrder
 
@@ -565,7 +808,7 @@ orderType,quantity,disclosedQuantity,orderValidity,price,triggerPrice,parentOrde
 
 #### Sample ModifyOrder Request:
 
-    samco.modify_order(order_number='200616000000350',body={"quantity": "50"})
+  samco.modify_order(order_number='200616000000350',body={"quantity": "50"})
 
 #### Sample ModifyOrder Response:
 ```python
@@ -597,7 +840,7 @@ orderType,quantity,disclosedQuantity,orderValidity,price,triggerPrice,parentOrde
   }
 }
 ```
-<a name="orderBook"/>
+<a name="orderbook"/>
 
 ## OrderBook
 
@@ -605,7 +848,7 @@ The OrderBook function `get_order_book()` retrieves and displays details of all 
 
 #### Sample OrderBook Request:
 
-    samco.get_order_book()
+  samco.get_order_book()
 
 #### Sample OrderBook Response:
 ```Python
@@ -651,7 +894,7 @@ The OrderBook function `get_order_book()` retrieves and displays details of all 
   ]
 }
 ```
-<a name="triggerOrders"/>
+<a name="triggerorders"/>
 
 ## TriggerOrders
 
@@ -664,7 +907,7 @@ order_number
 
 #### Sample TriggerOrders Request:
 
-    samco.get_trigger_order_numbers(order_number="200617000000378")
+  samco.get_trigger_order_numbers(order_number="200617000000378")
 
 #### Sample TriggerOrders Response:
 ```python
@@ -689,7 +932,7 @@ order_number
     ]
 }
 ```
-<a name="orderStatus"/>
+<a name="orderstatus"/>
 
 ## OrderStatus
 
@@ -701,7 +944,7 @@ order_number
 ```
 #### Sample OrderStatus Request:
 
-    samco.get_order_status(order_number="200617000000378")
+  samco.get_order_status(order_number="200617000000378")
 
 #### Sample OrderStatus Response:
 ```python
@@ -731,7 +974,7 @@ order_number
     }
 }
 ```
-<a name="cancelOrder"/>
+<a name="cancelorder"/>
 
 ## CancelOrder:
 
@@ -743,7 +986,7 @@ order_number
 ```
 #### Sample CancelOrder Request:
 
-    samco.cancel_order(order_number='200616000000350')
+  samco.cancel_order(order_number='200616000000350')
 
 #### sample CancelOrder Response:
 ```python
@@ -755,7 +998,7 @@ order_number
   "statusMessage" : "Order cancelled successfully"
 }
 ```
-<a name="cancelOrderCO"/>
+<a name="cancelorderco"/>
 
 ## CancelOrderCO
 
@@ -771,7 +1014,7 @@ order_number
 ```
 #### Sample CancelOrderCO Request:
 
-    samco.cancel_order_co(order_number='200617000000181')
+  samco.cancel_order_co(order_number='200617000000181')
 
 #### sample CancelOrderCO Response:
 ```python
@@ -783,7 +1026,7 @@ order_number
   "statusMessage" : "Cover Order 200617000000181 exited successfully"
 }
 ```
-<a name="cancelOrderBO"/>
+<a name="cancelorderbo"/>
 
 ## CancelOrderBO
 
@@ -810,7 +1053,409 @@ order_number
   "statusMessage" : "Bracket Order exited successfully"
 }
 ```
-<a name="tradeBook"/>
+
+
+
+<a name="addgtt"/>
+
+## AddGtt
+
+The add_gtt() function in the Samco API is utilized to add a Good Till Trigger (GTT) order to the exchange. A GTT order allows traders to set specific conditions for the execution of their orders. When this function is called successfully, it registers the GTT order with the Order Management System (OMS). However, it's important to note that successful placement of a GTT order via the API does not guarantee its immediate execution.
+
+To know more about GTT, [ click here](https://docs-tradeapi.samco.in/#add-gtt).
+
+#### Parameters:
+
+```python
+exchange,symbolName,transactionType,quantity,productType,orderType,triggerPrice,limitPrice,marketProtection
+```
+
+#### Sample Add GTT Request:
+
+```python
+
+samco.add_gtt(body={
+  "exchange": "NFO",
+  "symbolName": "WIPRO24JUN585PE",
+  "transactionType": "BUY",
+  "quantity": "1500",
+  "productType": "NRML",
+  "orderType": "L",
+  "triggerPrice": "1180",
+  "limitPrice": "1160"
+})
+```
+#### sample Add GTT Response:
+```json
+{
+  "serverTime": "30/05/24 11:42:25",
+  "msgId": "b74e09a8-4925-42cd-bca3-2a96872684e0",
+  "status": "Success",
+  "statusMessage": "GTT CREATED",
+  "gttSummaryId": "140954",
+  "orderDetails": {
+    "productType": "NRML",
+    "orderType": "L",
+    "triggerPrice": "1180",
+    "marketProtection": "",
+    "transactionType": "BUY",
+    "triggerId": "177902",
+    "symbol": "146465_NFO",
+    "symbolName": "WIPRO24JUN585PE",
+    "createdAt": "2024-05-30 11:42:25"
+  }
+}
+```
+
+<a name="modifygtt"/>
+
+## ModifyGtt
+
+Function modify_gtt() modifies an existing GTT (Good Till Triggered) order, allowing adjustments to parameters such as trigger price, quantity, product type, limit price, market protection, and order type
+#### Parameters:
+
+```python
+exchange,symbolName,transactionType,quantity,productType,orderType,triggerPrice,limitPrice,marketProtection,gttSummaryId
+```
+
+#### Sample Modify GTT Request:
+
+```python
+
+samco.modify_gtt(body={"symbolName": "WIPRO24JUN585PE", 
+  "exchange": "NFO",
+  "transactionType": "BUY", 
+  "orderType": "MKT",
+  "quantity": "500",
+  "productType": "NRML",
+  "triggerPrice": "124.7",
+  "limitPrice": "126.7",
+  "marketProtection": "12",
+  "gttSummaryId":"945505"
+})
+```
+#### sample Modify GTT Response:
+```json
+{
+    "serverTime": "02/06/24 12:00:52",
+    "msgId": "82452735-e3b8-4fc4-8346-0ef314b5a404",
+    "status": "Success",
+    "statusMessage": "GTT MODIFIED",
+    "gttSummaryId": "945510",
+    "orderDetails": {
+        "productType": "NRML",
+        "orderType": "MKT",
+        "triggerPrice": "124.7",
+        "marketProtection": "12",
+        "transactionType": "BUY",
+        "limitPrice": "",
+        "symbol": "146465_NFO",
+        "symbolName": "WIPRO24JUN585PE",
+        "quantity": "500"
+    }
+}
+```
+
+
+<a name="deletegtt"/>
+
+## DeleteGtt
+
+Function delete_gtt() cancels a GTT (Good Till Triggered) order before execution, removing it from the exchange's order book and preventing future execution. Once GTT is triggered, deletion is not possible.
+
+#### Parameters:
+
+```python
+gttSummaryId
+```
+
+#### Sample Delete GTT Request:
+
+```python
+
+samco.delete_gtt(body={
+    "gttSummaryId" : 945510
+})
+```
+#### sample Delete GTT Response:
+```json
+{
+    "serverTime": "02/06/24 12:06:38",
+    "msgId": "20705726-9f80-4698-8bad-e327f1d087b1",
+    "status": "Success",
+    "statusMessage": "GTT Deleted successfully",
+    "gttSummaryId": "945510",
+    "orderDetails": {
+        "userId": "RX372XX"
+    }
+}
+```
+
+<a name="addoco"/>
+
+## AddOco
+Function add_oco() adds an OCO (One-Cancels-the-Other) condition to a GTT (Good Till Triggered) order, allowing investors to set up two separate exit conditions for a single position. If one condition is triggered and its order is executed, the other order is automatically canceled.
+
+#### Parameters:
+
+```python
+exchange,symbolName,transactionType,quantity,productType,orderType,targetTriggerPrice,targetLimitPrice,stoplossTriggerPrice,stoplossLimitPrice,marketProtection
+```
+
+#### Sample Add OCO Request:
+
+```python
+
+samco.add_oco(body={
+    "exchange": "NFO", 
+    "symbolName": "WIPRO24JUN440PE", 
+    "transactionType": "SELL", 
+    "quantity": "1500", 
+    "productType": "NRML",
+    "orderType": "L", 
+    "targetTriggerPrice": "14.5",
+    "targetLimitPrice": "17",
+    "stoplossTriggerPrice": "14",
+    "stoplossLimitPrice": "14"
+})
+```
+#### sample Add OCO Response:
+```json
+{
+    "serverTime": "02/06/24 12:18:19",
+    "msgId": "023a6faf-b121-4066-bcac-6c7d67c6b34c",
+    "status": "Success",
+    "statusMessage": "GTT CREATED",
+    "gttSummaryId": "945525",
+    "orderDetails": {
+        "transactionType": "SELL",
+        "symbol": "133148_NFO",
+        "symbolName": "WIPRO24JUN440PE",
+        "productType": "NRML",
+        "orderType": "L",
+        "target": {
+            "quantity": "1500",
+            "triggerPrice": "14.5",
+            "limitPrice": "17",
+            "marketProtection": "",
+            "type": "TARGET",
+            "triggerId": "1345970"
+        },
+        "stopLoss": {
+            "quantity": "1500",
+            "triggerPrice": "14",
+            "limitPrice": "14",
+            "marketProtection": "",
+            "type": "STOPLOSS",
+            "triggerId": "1345975"
+        }
+    }
+}
+```
+
+
+
+
+
+
+<a name="modifyoco"/>
+
+## ModifyOco
+
+Function modify_oco() modifies an existing GTT (Good Till Triggered) order, allowing adjustments to parameters such as trigger price, quantity, product type, limit price, market protection, and order type
+#### Parameters:
+
+```python
+exchange,symbolName,transactionType,quantity,productType,orderType,targetTriggerPrice,targetLimitPrice,stoplossTriggerPrice,stoplossLimitPrice,marketProtection,gttSummaryId
+```
+
+#### Sample Modify OCO Request:
+
+```python
+
+samco.modify_oco(body={
+    "exchange": "NFO",
+    "symbolName": "WIPRO24JUN440PE",
+    "transactionType": "SELL",
+    "quantity": "3000",
+    "productType": "NRML",
+    "orderType": "L",
+   "targetTriggerPrice": "15",
+    "targetLimitPrice": "20",
+   "stoplossTriggerPrice": "13",
+   "stoplossLimitPrice": "13",
+    "gttSummaryId": "945525"
+})
+```
+#### sample Modify OCO Response:
+```json
+{
+    "serverTime": "02/06/24 12:22:11",
+    "msgId": "588cb679-18a5-4a91-9f10-1a16665c6c28",
+    "status": "Success",
+    "statusMessage": "GTT MODIFIED",
+    "gttSummaryId": "945530",
+    "orderDetails": {
+        "transactionType": "SELL",
+        "orderType": "L",
+        "symbol": "133148_NFO",
+        "symbolName": "WIPRO24JUN440PE",
+        "productType": "NRML",
+        "target": {
+            "limitPrice": "20",
+            "triggerId": "1345980",
+            "triggerPrice": "15",
+            "type": "TARGET",
+            "quantity": "3000",
+            "marketProtection": ""
+        },
+        "stopLoss": {
+            "limitPrice": "13",
+            "triggerId": "1345985",
+            "triggerPrice": "13",
+            "type": "STOPLOSS",
+            "quantity": "3000",
+            "marketProtection": ""
+        }
+    }
+}
+```
+
+
+<a name="deleteoco"/>
+
+
+## DeleteOco
+
+Function delete_gtt() cancels a GTT (Good Till Triggered) order before execution, removing it from the exchange's order book and preventing future execution. Once GTT is triggered, deletion is not possible.
+
+#### Parameters:
+
+```python
+gttSummaryId
+```
+
+#### Sample Delete OCO Request:
+
+```python
+
+samco.delete_oco(body={
+    "gttSummaryId" : 945530
+})
+```
+#### sample Delete GTT Response:
+```json
+{
+    "serverTime": "02/06/24 12:23:41",
+    "msgId": "bbeb4ca0-00ce-4161-948e-2fc28a9f2259",
+    "status": "Success",
+    "statusMessage": "GTT Deleted successfully",
+    "gttSummaryId": "945530",
+    "orderDetails": {
+        "clientId": "RXX72XX"
+    }
+}
+```
+
+
+<a name="listgttoco"/>
+
+
+## ListGttOco
+
+Function `list_gtt_oco()` lists all GTT (Good Till Triggered) orders with OCO (One-Cancels-the-Other) conditions set by the user.
+
+#### Parameters:
+
+```python
+listType
+```
+
+#### Sample List GTT OCO Request:
+
+```python
+samco.list_gtt_oco(listType='active')
+
+```
+#### sample List GTT OCO Response:
+```json
+{
+    "serverTime": "02/06/24 12:26:53",
+    "msgId": "d38d2888-122e-4bcf-a788-0e803336f1d2",
+    "status": "Success",
+    "statusMessage": "List of GTT / OCO orders received.",
+    "orderDetails": [
+        {
+            "summary": {
+                "id": 524020,
+                "userId": "RXX7XXX",
+                "symbol": "14366_NSE",
+                "symbolName": "IDEA",
+                "orderType": "L",
+                "productType": "CNC",
+                "gttType": "SINGLE",
+                "validTill": "FOREVER",
+                "createdAt": "2024-02-29 19:32:42",
+                "deletedAt": "",
+                "gttSummaryId": "524020",
+                "isExpired": false
+            },
+            "triggers": {
+                "gtt": {
+                    "status": "",
+                    "triggeredAt": "",
+                    "triggerId": "717325",
+                    "gttId": "717325",
+                    "quantity": "20",
+                    "limitPrice": "3600",
+                    "marketProtection": "",
+                    "ltpAtCreation": "13.65",
+                    "triggerPrice": "3600",
+                    "transactionType": "BUY",
+                    "rejectReason": "",
+                    "orderNumber": ""
+                }
+            }
+        },
+        {
+            "summary": {
+                "id": 524015,
+                "userId": "RXX7XXX",
+                "symbol": "14366_NSE",
+                "symbolName": "IDEA",
+                "orderType": "L",
+                "productType": "CNC",
+                "gttType": "SINGLE",
+                "validTill": "FOREVER",
+                "createdAt": "2024-02-29 19:32:30",
+                "deletedAt": "",
+                "gttSummaryId": "524015",
+                "isExpired": false
+            },
+            "triggers": {
+                "gtt": {
+                    "status": "",
+                    "triggeredAt": "",
+                    "triggerId": "717320",
+                    "gttId": "717320",
+                    "quantity": "20",
+                    "limitPrice": "3600",
+                    "marketProtection": "",
+                    "ltpAtCreation": "13.65",
+                    "triggerPrice": "3600",
+                    "transactionType": "BUY",
+                    "rejectReason": "",
+                    "orderNumber": ""
+                }
+            }
+        }
+    ]
+}
+```
+
+
+
+<a name="tradebook"/>
 
 ## TradeBook
 
@@ -818,7 +1463,7 @@ The TradeBook function is `get_trade_book()`which gives details of all successfu
 
 #### Sample TradeBook Request:
 
-    samco.get_trade_book()
+  samco.get_trade_book()
 
 #### Sample TradeBook Response:
 ```python
@@ -864,7 +1509,7 @@ position_type
 ```
 #### Sample Positions Request:
 
-    samco.get_positions_data(position_type=samco.POSITION_TYPE_DAY)
+  samco.get_positions_data(position_type=samco.POSITION_TYPE_DAY)
 
 #### Sample Positions Response:
 ```python
@@ -908,7 +1553,7 @@ position_type
     ]
 }
 ```
-<a name="positionConversion"/>
+<a name="positionconversion"/>
 
 ## PositionConversion
 
@@ -940,7 +1585,7 @@ symbolName,exchange,transactionType,positionType,quantityToConvert,fromProductTy
   "statusMsg" : "Position Conversion from MIS to CNC successful"
 }
 ```
-<a name="positionSquareOff"/>
+<a name="positionsquareoff"/>
 
 ## PositionSquareOff
 
@@ -985,7 +1630,7 @@ The Holdings function `get_holding()` helps the user to get the details of the S
 
 #### Sample Holdings Request:
 
-    samco.get_holding()
+  samco.get_holding()
 
 #### Sample Holdings Response:
 ```python
@@ -1060,7 +1705,7 @@ The Holdings function `get_holding()` helps the user to get the details of the S
     ]
 }
 ```
-<a name="intraDayCandleData"/>
+<a name="intradaycandledata"/>
 
 ## IntraDayCandleData
 
@@ -1073,7 +1718,7 @@ symbol_name,exchange,from_date,to_date
 ```
 #### Sample IntraDayCandleData Request:
 
-    samco.get_intraday_candle_data(symbol_name='INFY',exchange=samco.EXCHANGE_NSE, from_date='2020-06-17 10:22:00',to_date='2020-06-17 10:28:00')
+  samco.get_intraday_candle_data(symbol_name='INFY',exchange=samco.EXCHANGE_NSE, from_date='2020-06-17 10:22:00',to_date='2020-06-17 10:28:00')
 
 #### Sample IntraDayCandleData Response:
 ```python
@@ -1142,7 +1787,7 @@ symbol_name,exchange,from_date,to_date
   ]
 }
 ```
-<a name="indexIntraDayCandleData"/>
+<a name="indexintradaycandledata"/>
 
 ### IndexIntraDayCandleData
 
@@ -1154,7 +1799,7 @@ index_name,from_date,to_date
 ```
 #### Sample IndexIntraDayCandleData Request:
 
-    samco.get_index_intraday_candle_data(index_name='sensex', from_date='2020-06-16 09:23:00',to_date='2020-06-16 9:28:00')
+  samco.get_index_intraday_candle_data(index_name='sensex', from_date='2020-06-16 09:23:00',to_date='2020-06-16 9:28:00')
 
 #### Sample IndexIntraDayCandleData Response:
 ```Python
@@ -1215,7 +1860,7 @@ index_name,from_date,to_date
   ]
 }
 ```
-<a name="historicalCandleData"/>
+<a name="historicalcandledata"/>
 
 ## HistoricalCandleData:
 
@@ -1259,7 +1904,7 @@ symbol_name,exchange,from_date,to_date
   ]
 }
 ```
-<a name="indexHistoricalCandleData"/>
+<a name="indexhistoricalcandledata"/>
 
 ### IndexHistoricalCandleData:
 The IndexHistoricalCandleData function `get_index_candle_data()` gets the Index historical candle data such as Open, high, low, close, last traded price and volume within specific dates for a specific index. From date is mandatory. End date is optional and defaults to Today.
@@ -1319,7 +1964,7 @@ index_name,from_date,to_date
   ]
 }
 ```
-<a name="streamingData"/>
+<a name="streamingdata"/>
 
 ## StreamingData
 
@@ -1329,19 +1974,19 @@ The API uses WebSocket protocol to establish a dedicated TCP connection after an
 
 #### Sample Streaming Request:
 
-    value=[{"symbol":"-53"},{"symbol":"1143_CDS"},{"symbol":"1270_NSE"},{"symbol":"10604_NSE"},{"symbol":"11195_NSE"}]
-    samco.set_streaming_data(value)
-    samco.start_streaming()
+  value=[{"symbol":"-53"},{"symbol":"1143_CDS"},{"symbol":"1270_NSE"},{"symbol":"10604_NSE"},{"symbol":"11195_NSE"}]
+  samco.set_streaming_data(value)
+  samco.start_streaming()
 
 #### Sample Streaming Response:
 
-      Message Arrived:{"response":{"data":{"aPr":"0.00","aSz":"0","avgPr":"0.00","bPr":"0.00", "bSz":"0","c":"29.65","ch":"0.38","chPer":"1.28",
-      "h":"30.28","l":"27.24","lTrdT":"09 Jun 2020, 02:11:58 PM","ltp":"30.03","ltq":"0","ltt":"09 Jun 2020, 02:11:58 PM","lttUTC":"09 Jun 2020, 08:41:58 AM",
-      "o":"29.65","oI":"","oIChg":"","sym":"-53","tBQ":"0","tSQ":"0","ttv":"0.00","vol":"0","yH":"0.00","yL":"0.00"},"streaming_type":"quote"}}
+  Message Arrived:{"response":{"data":{"aPr":"0.00","aSz":"0","avgPr":"0.00","bPr":"0.00", "bSz":"0","c":"29.65","ch":"0.38","chPer":"1.28",
+  "h":"30.28","l":"27.24","lTrdT":"09 Jun 2020, 02:11:58 PM","ltp":"30.03","ltq":"0","ltt":"09 Jun 2020, 02:11:58 PM","lttUTC":"09 Jun 2020, 08:41:58 AM",
+  "o":"29.65","oI":"","oIChg":"","sym":"-53","tBQ":"0","tSQ":"0","ttv":"0.00","vol":"0","yH":"0.00","yL":"0.00"},"streaming_type":"quote"}}
 
-      Message Arrived:{"response":{"data":{"aPr":"0.00","aSz":"0","avgPr":"0.00","bPr":"0.00", "bSz":"0","c":"29.65","ch":"0.38","chPer":"1.28",
-      "h":"30.28","l":"27.24","lTrdT":"09 Jun 2020, 02:11:58 PM","ltp":"30.03","ltq":"0","ltt":"09 Jun 2020, 02:11:58 PM","lttUTC":"09 Jun 2020, 08:41:58 AM",
-      "o":"29.65","oI":"","oIChg":"","sym":"-53","tBQ":"0","tSQ":"0","ttv":"0.00","vol":"0","yH":"0.00","yL":"0.00"},"streaming_type":"quote"}}
+  Message Arrived:{"response":{"data":{"aPr":"0.00","aSz":"0","avgPr":"0.00","bPr":"0.00", "bSz":"0","c":"29.65","ch":"0.38","chPer":"1.28",
+  "h":"30.28","l":"27.24","lTrdT":"09 Jun 2020, 02:11:58 PM","ltp":"30.03","ltq":"0","ltt":"09 Jun 2020, 02:11:58 PM","lttUTC":"09 Jun 2020, 08:41:58 AM",
+  "o":"29.65","oI":"","oIChg":"","sym":"-53","tBQ":"0","tSQ":"0","ttv":"0.00","vol":"0","yH":"0.00","yL":"0.00"},"streaming_type":"quote"}}
 
 
 <a name="logout"/>
@@ -1352,7 +1997,7 @@ The Logout function name in python is `logout()`
 
 #### Sample Logout Request:
 
-    samco.logout()
+  samco.logout()
 
 #### Sample Logout Response:
 ```python
@@ -1381,6 +2026,7 @@ This section contains the list of possible constant values that can be passed fo
     EXCHANGE_NSE
     EXCHANGE_BSE
     EXCHANGE_NFO
+    EXCHANGE_BFO
     EXCHANGE_CDS
     EXCHANGE_MCX
    
