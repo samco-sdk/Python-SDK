@@ -51,6 +51,7 @@ For specific details on parameters passed on the request, and details about API 
 ## List of API
 * [Login](#login)
 * [SearchEquityDerivative](#searchequityderivative)
+* [SpanMargin](#spanmargin)
 * [Quote](#quote)
 * [IndexQuote](#indexquote)
 * [MultiQuote](#multiquote)
@@ -211,6 +212,57 @@ search_symbol_name,exchange
     ]
 }
 ```
+
+
+<a name="spanmargin"/>
+
+## SpanMargin
+
+Get market depth details for a specific equity scrip including but not limited to values like last trade price, previous close price, change value, change percentage, bids/asks, upper and lower circuit limits etc. This helps user with market picture of an equity scrip using which he will be able to place an order.
+The Quote function name in python is `span_margin()`
+
+#### Parameters:
+```python
+exchange ,tradingSymbol,qty
+```
+#### Sample Quote request:
+
+samco.span_margin(body={
+    "request":[
+        {
+            "exchange":"NFO",
+            "tradingSymbol":"NIFTY06JUN2423200PE",
+            "qty":"25"
+        },
+         {
+            "exchange":"NFO",
+            "tradingSymbol":"NIFTY24JUNFUT",
+            "qty":"25"
+        }
+    ]
+})
+
+#### Sample Quote Response:
+```python
+{
+  "serverTime": "03/06/24 16:39:25",
+  "msgId": "26bef46f-a82e-485d-8dc7-f0d591895d19",
+  "status": "Success",
+  "statusMessage": "Span margin calculated",
+  "spanDetails": {
+    "totalRequirement": "14309.11",
+    "spanRequirement": "2584.11",
+    "exposureMargin": "11725.00",
+    "spreadBenefit": "00.00"
+  }
+}
+
+```
+
+
+
+
+
 <a name="quote"/>
 
 ## Quote
