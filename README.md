@@ -218,8 +218,7 @@ search_symbol_name,exchange
 
 ## SpanMargin
 
-Get market depth details for a specific equity scrip including but not limited to values like last trade price, previous close price, change value, change percentage, bids/asks, upper and lower circuit limits etc. This helps user with market picture of an equity scrip using which he will be able to place an order.
-The Quote function name in python is `span_margin()`
+`span_margin()`
 
 #### Parameters:
 ```python
