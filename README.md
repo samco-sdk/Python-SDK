@@ -508,92 +508,92 @@ The `get_future_chain()` function can be used to search for future contracts for
 
 #### Parameters:
 ```python
-  search_symbol_name,exchange,expiry_date,strike_price,option_type
+  search_symbol_name,exchange,expiry_date
 ```
-#### Sample OptionChain Request:
+#### Sample FutureChain Request:
 
 ```python
-  samco.get_option_chain(search_symbol_name='Reliance',exchange=samco.EXCHANGE_NFO,expiry_date='2020-07-30',strike_price='1961.40',option_type='PE')
+  samco.get_option_chain(search_symbol_name='Nifty',exchange=samco.EXCHANGE_NFO,expiry_date='2024-08-29')
 ```
-#### Sample OptionChain Response:
+#### Sample FutureChain Response:
 ```python
 {
-  "serverTime": "29/05/24 16:04:46",
-  "msgId": "d8523da7-77c2-4ffa-9dd8-69ce69d09dc6",
-  "status": "Success",
-  "statusMessage": "Future chain details retrived successfully. ",
-  "futureChainDetails": [
-    {
-      "tradingSymbol": "SENSEX24MAYFUT",
-      "exchange": "BFO",
-      "symbol": "859479_BFO",
-      "expiryDate": "2024-05-31",
-      "instrument": "IF",
-      "underLyingSymbol": "SENSEX",
-      "spotPrice": 74502.9,
-      "lastTradedPrice": "74667.05",
-      "openInterest": 3130,
-      "openInterestInLot": 313,
-      "openInterestChange": 3130,
-      "openInterestChangeInLot": 313,
-      "oichangePer": "Infinity",
-      "volume": 8620,
-      "bestBids": [
+    "serverTime": "28/08/24 14:58:23",
+    "msgId": "abd522ba-383b-4569-a53b-52dba48cb8c0",
+    "status": "Success",
+    "statusMessage": "Future chain details retrived successfully. ",
+    "futureChainDetails": [
         {
-          "number": 1,
-          "quantity": "0",
-          "price": "0.0000"
-        },
-        {
-          "number": 2,
-          "quantity": "0",
-          "price": "0.0000"
-        },
-        {
-          "number": 3,
-          "quantity": "0",
-          "price": "0.0000"
-        },
-        {
-          "number": 4,
-          "quantity": "0",
-          "price": "0.0000"
-        },
-        {
-          "number": 5,
-          "quantity": "0",
-          "price": "0.0000"
+            "tradingSymbol": "NIFTY24AUGFUT",
+            "exchange": "NFO",
+            "symbol": "35415_NFO",
+            "expiryDate": "2024-08-29",
+            "instrument": "FUTIDX",
+            "underLyingSymbol": "NIFTY",
+            "spotPrice": 25062.25,
+            "lastTradedPrice": "25051.10",
+            "openInterest": 8048325,
+            "openInterestInLot": 321933,
+            "openInterestChange": 18650,
+            "openInterestChangeInLot": 746,
+            "oichangePer": "0.23",
+            "volume": 4666575,
+            "bestBids": [
+                {
+                    "number": 1,
+                    "quantity": "50",
+                    "price": "25050.25"
+                },
+                {
+                    "number": 2,
+                    "quantity": "25",
+                    "price": "25048.25"
+                },
+                {
+                    "number": 3,
+                    "quantity": "25",
+                    "price": "25048.05"
+                },
+                {
+                    "number": 4,
+                    "quantity": "75",
+                    "price": "25047.40"
+                },
+                {
+                    "number": 5,
+                    "quantity": "100",
+                    "price": "25046.05"
+                }
+            ],
+            "bestAsks": [
+                {
+                    "number": 1,
+                    "quantity": "500",
+                    "price": "25051.05"
+                },
+                {
+                    "number": 2,
+                    "quantity": "325",
+                    "price": "25051.15"
+                },
+                {
+                    "number": 3,
+                    "quantity": "125",
+                    "price": "25051.20"
+                },
+                {
+                    "number": 4,
+                    "quantity": "150",
+                    "price": "25051.25"
+                },
+                {
+                    "number": 5,
+                    "quantity": "750",
+                    "price": "25051.30"
+                }
+            ]
         }
-      ],
-      "bestAsks": [
-        {
-          "number": 1,
-          "quantity": "0",
-          "price": "0.0000"
-        },
-        {
-          "number": 2,
-          "quantity": "0",
-          "price": "0.0000"
-        },
-        {
-          "number": 3,
-          "quantity": "0",
-          "price": "0.0000"
-        },
-        {
-          "number": 4,
-          "quantity": "0",
-          "price": "0.0000"
-        },
-        {
-          "number": 5,
-          "quantity": "0",
-          "price": "0.0000"
-        }
-      ]
-    }
-  ]
+    ]
 }
 ```
 
