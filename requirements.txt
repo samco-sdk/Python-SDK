@@ -1,9 +1,10 @@
-certifi >= 14.05.14
-six >= 1.10
-python_dateutil >= 2.5.3
-setuptools >= 21.0.0
-urllib3 >= 1.15.1
+certifi==2020.12.5
+six==1.16.0
+python-dateutil==2.8.2
+setuptools==65.5.0
+urllib3==1.24.3
 requests==2.20.1
-future==0.16
-websocket==0.2.1
-websocket_client==0.57.0
+future==0.16.0
+websocket-client==0.57.0
+pandas==1.5.3
+numpy==1.23.5
