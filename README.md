@@ -22,11 +22,12 @@ pip list
 
 ### Prerequisites
 
-Python 2.x or 3.x setup. You can verify the version installed using
+Python 3.x setup. You can verify the version installed using
 
 ```
 python --version
 ```
+- Tested with Python 3.11.9
 
 You can verify the Pip version installed using
 ```
