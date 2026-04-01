@@ -50,6 +50,11 @@ For specific details on parameters passed on the request, and details about API 
 
 ## List of API
 * [Login](#login)
+* [GenerateOtp](#generateotp)
+* [GenerateSecretAPIKey](#generatesecretapikey)
+* [GenerateAccessToken](#generateaccesstoken)
+* [IpRegistration](#ipregistration)
+* [IPUpdate](#ipupdate)
 * [SearchEquityDerivative](#searchequityderivative)
 * [SpanMargin](#spanmargin)
 * [Quote](#quote)
@@ -131,7 +136,6 @@ userId,password,yob
   ],
   "orderTypeList": [
     "L",
-    "MKT",
     "SL"
   ],
   "productList": [
@@ -146,6 +150,152 @@ userId,password,yob
 samco.set_session_token(sessionToken="cbcc85c02d057187a4c6512ae0978946")
 ## this function will help to reduce to pass session token for other apis. This will automate the session token for other apis
 ```
+
+<a name="generateotp"/>
+
+## GenerateOtp
+
+The Generate Otp function `generate_otp()` should be used to start the process of getting a secret API key.When this API is called, a One-Time Password (OTP) is sent to the user’s registered mobile number and email ID. This OTP is required for the next step of API key generation.
+
+## Parameters:
+```
+uid
+```
+## GenerateOtp Sample Request:
+
+    otp=samco.generate_otp(body={"uid":'*****'})
+    print("Generate OTP Response",otp)
+    ##this will return a otp in registered mobile no and email
+ 
+ ## GenerateOtp Response:
+ ```python
+ {
+  "serverTime": "01/04/26 09:51:42",
+  "msgId": "5e18b6cd-2d78-4c63-be1a-62143162123b",
+  "status": "Success",
+  "statusMessage": "OTP sent to your mobile and email."
+}
+```
+
+
+<a name="generatesecretapikey"/>
+
+## GenerateSecretAPIKey
+
+The Generate Secret API Key function `generate_secret_api_key()` should be used to generate a secret API key using a valid user ID and the OTP received from the Generate OTP API.Once the request is successful, the secret API key is sent to the user’s registered email ID
+
+## Parameters:
+```
+uid,otp
+```
+## GenerateSecretAPIKey Sample Request:
+
+    secretKey=samco.generate_secret_api_key(body={"uid":'*****',"otp":"xxxx"})
+    print("Generate Secret Api Key Response",secretKey)
+    ##this will return a secret api Key in registered email
+ 
+ ## GenerateSecretAPIKey Response:
+ ```python
+{
+  "serverTime": "01/04/26 09:59:50",
+  "msgId": "37151b48-fd98-4ce2-9686-2ea96212ff66",
+  "status": "Success",
+  "statusMessage": "The secret API key has been sent to your email."
+}
+```
+
+<a name="generateaccesstoken"/>
+
+## GenerateAccessToken
+
+The Generate Access Token function `generate_access_token()` should be used to generate an access token using a valid user ID and the secret API key received from the Secret Key Generator API on your registered email ID.
+
+## Parameters:
+```
+uid,secretApiKey
+```
+## GenerateAccessToken Sample Request:
+
+    accessToken=samco.generate_access_token(body={"uid":'*****',"secretApiKey": "xxxxxxxxxxxxx"})
+    print("Generate AccessToken Response",accessToken)
+    ##this will return a Access token
+ 
+ ## GenerateAccessToken Response:
+ ```python
+{
+  "serverTime": "01/04/26 10:12:35",
+  "msgId": "91c1b9cc-6200-44b8-8186-ce7f5df82100",
+  "status": "Success",
+  "accessToken": "xxxxxxxxxxxxxxxxx"
+}
+```
+
+
+<a name="ipregistration"/>
+
+## IpRegistration
+
+The Ip Registration function `ip_registration()` should be used to register the primary and secondary static IP addresses for a client. Once IPs are registered, the client can access the APIs only from these IP addresses.The IP address must be a valid IPv4 address.If a user tries to access the API from any other IP address, the request will be rejected with an error.
+
+## Parameters:
+```
+clientId,primaryIp,secondaryIp,password
+```
+## IpRegistration Sample Request:
+
+    ipRegister=samco.ip_registration(body={"clientId":'*****',"primaryIp": "xxx.xx.xx","secondaryIp": "xxx.xx.xx","password": "abc@123"})
+    print("Ip Registration  Response",ipRegister)
+    ##this will return a registered ip address details
+ 
+ ## IpRegistration Response:
+ ```python
+{
+    "serverTime": "29/01/26 10:46:06",
+    "msgId": "d5f083f3-1b04-4b97-9385-1e578fdfeb7a",
+    "status": "Success",
+    "statusMessage": "Client IPs registered successfully",
+    "data": {
+        "user_id": "DV99999",
+        "primary_ip": "XXX.XX.XX.XXX",
+        "secondary_ip": "XXX.XX.XX.XXX",
+        "ip_updated_at": "2026-03-01T12:16:07.000Z"
+    }
+}
+```
+
+
+<a name="ipupdate"/>
+
+## IPUpdate
+
+The IP Update function `ip_update()` should be used to update the primary and/or secondary static IP addresses for a client. Once the IPs are updated, the client can access the APIs only from the newly registered IP addresses.A user is allowed to update the IP addresses only once per calendar week.The IP address must be a valid IPv4 address. If a user tries to access the API from any other IP address, the request will be rejected with an error.
+
+## Parameters:
+```
+clientId,primaryIp,secondaryIp,password
+```
+## IPUpdate Sample Request:
+
+    ipUpdate=samco.ip_update(body={"clientId":'*****',"primaryIp": "xxx.xx.xx","secondaryIp": "xxx.xx.xx","password": "abc@123"})
+    print("IP Update  Response",ipUpdate)
+    ##this will return a updated ip address details
+ 
+ ## IPUpdate Response:
+ ```python
+{
+    "serverTime": "29/01/26 10:46:06",
+    "msgId": "d5f083f3-1b04-4b97-9385-1e578fdfeb7a",
+    "status": "Success",
+    "statusMessage": "Client IPs updated successfully",
+    "data": {
+        "user_id": "DV99999",
+        "primary_ip": "XXX.XX.XX.XXX",
+        "secondary_ip": "XXX.XX.XX.XXX",
+        "ip_updated_at": "2026-03-01T12:16:07.000Z"
+    }
+}
+```
+
 
 <a name="searchequityderivative"/>
 
@@ -508,92 +658,92 @@ The `get_future_chain()` function can be used to search for future contracts for
 
 #### Parameters:
 ```python
-  search_symbol_name,exchange,expiry_date
+  search_symbol_name,exchange,expiry_date,strike_price,option_type
 ```
-#### Sample FutureChain Request:
+#### Sample OptionChain Request:
 
 ```python
-  samco.get_option_chain(search_symbol_name='Nifty',exchange=samco.EXCHANGE_NFO,expiry_date='2024-08-29')
+  samco.get_option_chain(search_symbol_name='Reliance',exchange=samco.EXCHANGE_NFO,expiry_date='2020-07-30',strike_price='1961.40',option_type='PE')
 ```
-#### Sample FutureChain Response:
+#### Sample OptionChain Response:
 ```python
 {
-    "serverTime": "28/08/24 14:58:23",
-    "msgId": "abd522ba-383b-4569-a53b-52dba48cb8c0",
-    "status": "Success",
-    "statusMessage": "Future chain details retrived successfully. ",
-    "futureChainDetails": [
+  "serverTime": "29/05/24 16:04:46",
+  "msgId": "d8523da7-77c2-4ffa-9dd8-69ce69d09dc6",
+  "status": "Success",
+  "statusMessage": "Future chain details retrived successfully. ",
+  "futureChainDetails": [
+    {
+      "tradingSymbol": "SENSEX24MAYFUT",
+      "exchange": "BFO",
+      "symbol": "859479_BFO",
+      "expiryDate": "2024-05-31",
+      "instrument": "IF",
+      "underLyingSymbol": "SENSEX",
+      "spotPrice": 74502.9,
+      "lastTradedPrice": "74667.05",
+      "openInterest": 3130,
+      "openInterestInLot": 313,
+      "openInterestChange": 3130,
+      "openInterestChangeInLot": 313,
+      "oichangePer": "Infinity",
+      "volume": 8620,
+      "bestBids": [
         {
-            "tradingSymbol": "NIFTY24AUGFUT",
-            "exchange": "NFO",
-            "symbol": "35415_NFO",
-            "expiryDate": "2024-08-29",
-            "instrument": "FUTIDX",
-            "underLyingSymbol": "NIFTY",
-            "spotPrice": 25062.25,
-            "lastTradedPrice": "25051.10",
-            "openInterest": 8048325,
-            "openInterestInLot": 321933,
-            "openInterestChange": 18650,
-            "openInterestChangeInLot": 746,
-            "oichangePer": "0.23",
-            "volume": 4666575,
-            "bestBids": [
-                {
-                    "number": 1,
-                    "quantity": "50",
-                    "price": "25050.25"
-                },
-                {
-                    "number": 2,
-                    "quantity": "25",
-                    "price": "25048.25"
-                },
-                {
-                    "number": 3,
-                    "quantity": "25",
-                    "price": "25048.05"
-                },
-                {
-                    "number": 4,
-                    "quantity": "75",
-                    "price": "25047.40"
-                },
-                {
-                    "number": 5,
-                    "quantity": "100",
-                    "price": "25046.05"
-                }
-            ],
-            "bestAsks": [
-                {
-                    "number": 1,
-                    "quantity": "500",
-                    "price": "25051.05"
-                },
-                {
-                    "number": 2,
-                    "quantity": "325",
-                    "price": "25051.15"
-                },
-                {
-                    "number": 3,
-                    "quantity": "125",
-                    "price": "25051.20"
-                },
-                {
-                    "number": 4,
-                    "quantity": "150",
-                    "price": "25051.25"
-                },
-                {
-                    "number": 5,
-                    "quantity": "750",
-                    "price": "25051.30"
-                }
-            ]
+          "number": 1,
+          "quantity": "0",
+          "price": "0.0000"
+        },
+        {
+          "number": 2,
+          "quantity": "0",
+          "price": "0.0000"
+        },
+        {
+          "number": 3,
+          "quantity": "0",
+          "price": "0.0000"
+        },
+        {
+          "number": 4,
+          "quantity": "0",
+          "price": "0.0000"
+        },
+        {
+          "number": 5,
+          "quantity": "0",
+          "price": "0.0000"
         }
-    ]
+      ],
+      "bestAsks": [
+        {
+          "number": 1,
+          "quantity": "0",
+          "price": "0.0000"
+        },
+        {
+          "number": 2,
+          "quantity": "0",
+          "price": "0.0000"
+        },
+        {
+          "number": 3,
+          "quantity": "0",
+          "price": "0.0000"
+        },
+        {
+          "number": 4,
+          "quantity": "0",
+          "price": "0.0000"
+        },
+        {
+          "number": 5,
+          "quantity": "0",
+          "price": "0.0000"
+        }
+      ]
+    }
+  ]
 }
 ```
 
@@ -850,7 +1000,7 @@ symbol_name,exchange,transactionType,orderType,price,quantity,disclosedQuantity,
 
 ## ModifyOrder
 
-The ModifyOrder function `modify_order()` can be used to modify some attributes of an order as long as it is with open/pending status in system. For modification order identifier is mandatory. With order identifier you need to send the optional parameter(s) which needs to be modified. In case the optional parameters aren't sent, the default will be considered from the original order. Modifiable attributes include quantity, Order Type (L,MKT, SL,SL-M). This API cannot be used for modifying attributes of an executed/rejected/cancelled order. Only the attribute that needs to be modified should be sent in the request alongwith the Order Identifier.
+The ModifyOrder function `modify_order()` can be used to modify some attributes of an order as long as it is with open/pending status in system. For modification order identifier is mandatory. With order identifier you need to send the optional parameter(s) which needs to be modified. In case the optional parameters aren't sent, the default will be considered from the original order. Modifiable attributes include quantity, Order Type (L, SL). This API cannot be used for modifying attributes of an executed/rejected/cancelled order. Only the attribute that needs to be modified should be sent in the request alongwith the Order Identifier.
 
 #### Parameters:
 ```python
@@ -1176,12 +1326,12 @@ exchange,symbolName,transactionType,quantity,productType,orderType,triggerPrice,
 samco.modify_gtt(body={"symbolName": "WIPRO24JUN585PE", 
   "exchange": "NFO",
   "transactionType": "BUY", 
-  "orderType": "MKT",
+  "orderType": "L",
   "quantity": "500",
   "productType": "NRML",
   "triggerPrice": "124.7",
   "limitPrice": "126.7",
-  "marketProtection": "12",
+  "marketProtection": "",
   "gttSummaryId":"945505"
 })
 ```
@@ -1195,11 +1345,11 @@ samco.modify_gtt(body={"symbolName": "WIPRO24JUN585PE",
     "gttSummaryId": "945510",
     "orderDetails": {
         "productType": "NRML",
-        "orderType": "MKT",
+        "orderType": "L",
         "triggerPrice": "124.7",
-        "marketProtection": "12",
+        "marketProtection": "",
         "transactionType": "BUY",
-        "limitPrice": "",
+        "limitPrice": "124.7",
         "symbol": "146465_NFO",
         "symbolName": "WIPRO24JUN585PE",
         "quantity": "500"
