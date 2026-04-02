@@ -50,12 +50,12 @@ Stocknote python SDK is a python client library for easily accessing the stockno
 For specific details on parameters passed on the request, and details about API response, please refer our [Stocknote API documentation](https://docs-tradeapi.samco.in).
 
 ## List of API
-* [Login](#login)
+* [IpRegistration](#ipregistration)
+* [IPUpdate](#ipupdate)
 * [GenerateOtp](#generateotp)
 * [GenerateSecretAPIKey](#generatesecretapikey)
 * [GenerateAccessToken](#generateaccesstoken)
-* [IpRegistration](#ipregistration)
-* [IPUpdate](#ipupdate)
+* [Login](#login)
 * [SearchEquityDerivative](#searchequityderivative)
 * [SpanMargin](#spanmargin)
 * [Quote](#quote)
@@ -93,41 +93,123 @@ For specific details on parameters passed on the request, and details about API 
 
 ## Using the API
 
-As a first step to access StockNote APIs, you need to import our SDK in your client code and then login to get valid session token.
+To access StockNote APIs, you need to import the SDK, generate an access token, login, and obtain a session token.
 
-### Import the Python SDK and get a session token
-1. Import StocknoteAPIPythonBridge
-```
+---
+
+### 1. Import the Python SDK
+
+```python
 from snapi_py_client.snapi_bridge import StocknoteAPIPythonBridge
 ```
 
-2. Create a StocknoteAPIPythonBridge object
+---
+
+### 2. Create API Instance
+
 ```python
-samco=StocknoteAPIPythonBridge()
+samco = StocknoteAPIPythonBridge()
 ```
-3. Login to access Stocknote API by providing below parameters.
 
-<a name="login"/>
+---
 
-## Login
+### 3. Prerequisites (One-Time Setup)
 
-## Parameters:
+The following steps are required as a one-time setup:
+
+#### 3.1 Register Static IP
+Register your static IP using [IP Registration](#ipregistration) or update it using [IP Update](#ipupdate).
+
+#### 3.2 Generate OTP
+Generate an OTP using [Generate OTP](#generateotp).
+
+#### 3.3 Generate Secret API Key
+Use the OTP received in the previous step to generate your Secret API Key via [Generate Secret API Key](#generatesecretapikey).
+
+---
+
+### 4. Generate Access Token
+
+<a name="generateaccesstoken"></a>
+
+Use the `generate_access_token()` API to generate an access token.
+
+- This token is **valid for one day**
+- It **expires before 8:00 AM the next day**
+
+#### Parameters
+```
+uid,secretApiKey
+```
+
+#### Sample Request
+
+```python
+accessTokenResponse = samco.generate_access_token(
+    body={
+        "uid": "*****",
+        "secretApiKey": "xxxxxxxxxxxxx"
+    }
+)
+
+print("Generate AccessToken Response:", accessTokenResponse)
+```
+
+> ℹ️ This API returns an access token used for authentication.
+
+#### Sample Response
+
+```json
+{
+  "serverTime": "01/04/26 10:12:35",
+  "msgId": "91c1b9cc-6200-44b8-8186-ce7f5df82100",
+  "status": "Success",
+  "accessToken": "xxxxxxxxxxxxxxxxx"
+}
+```
+
+---
+
+### 5. Login and Set Session Token
+
+<a name="login"></a>
+
+Use the Login API to authenticate using the access token and generate a session token.
+
+#### Parameters
 ```
 userId,password,yob,accessToken
 ```
-## Login Sample Request:
 
-    login=samco.login(body={"userId":'*****','password':'*****','yob':'****','accessToken':'xxxxxxxxxxxxxx'})
-    print("Login details",login)
-    ##this will return a user details and generated session token
- 
- ## Login Response:
- ```python
- {
+#### Sample Request
+
+```python
+import json
+
+jsonAccessTokenResponse = json.loads(accessTokenResponse)
+
+loginResponse = samco.login(
+    body={
+        "userId": "*****",
+        "password": "*****",
+        "yob": "****",
+        "accessToken": jsonAccessTokenResponse["accessToken"]
+    }
+)
+
+print("Login details:", loginResponse)
+```
+
+> ℹ️ This API returns user details along with a session token.
+
+#### Sample Response
+
+```json
+{
   "serverTime": "16/06/20 12:36:52",
   "msgId": "580d405d-663e-49e4-9a5d-26d439bc8390",
   "status": "Success",
-  "statusMessage": "Login session token generated successfully ",
+  "statusMessage": "Login session token generated successfully",
   "sessionToken": "cbcc85c02d057187a4c6512ae0978946",
   "accountID": "client_id",
   "accountName": "client_name",
@@ -146,11 +228,22 @@ userId,password,yob,accessToken
   ]
 }
 ```
-4. Get the session token form login response and set it to `set_session_token()` function.
+
+---
+
+### Set Session Token
+
+After login, extract the session token and set it using `set_session_token()`:
+
 ```python
-samco.set_session_token(sessionToken="cbcc85c02d057187a4c6512ae0978946")
-## this function will help to reduce to pass session token for other apis. This will automate the session token for other apis
+loginResponse = json.loads(loginResponse)
+
+samco.set_session_token(
+    sessionToken=loginResponse["sessionToken"]
+)
 ```
+
+> ℹ️ The `set_session_token()` function automatically attaches the session token to all subsequent API requests, so you don’t need to pass it manually each time.
 
 <a name="generateotp"/>
 
@@ -204,33 +297,6 @@ uid,otp
   "statusMessage": "The secret API key has been sent to your email."
 }
 ```
-
-<a name="generateaccesstoken"/>
-
-## GenerateAccessToken
-
-The Generate Access Token function `generate_access_token()` should be used to generate an access token using a valid user ID and the secret API key received from the Secret Key Generator API on your registered email ID.
-
-## Parameters:
-```
-uid,secretApiKey
-```
-## GenerateAccessToken Sample Request:
-
-    accessToken=samco.generate_access_token(body={"uid":'*****',"secretApiKey": "xxxxxxxxxxxxx"})
-    print("Generate AccessToken Response",accessToken)
-    ##this will return a Access token
- 
- ## GenerateAccessToken Response:
- ```python
-{
-  "serverTime": "01/04/26 10:12:35",
-  "msgId": "91c1b9cc-6200-44b8-8186-ce7f5df82100",
-  "status": "Success",
-  "accessToken": "xxxxxxxxxxxxxxxxx"
-}
-```
-
 
 <a name="ipregistration"/>
 
