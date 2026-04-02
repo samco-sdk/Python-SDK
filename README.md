@@ -245,7 +245,7 @@ samco.set_session_token(
 
 > ℹ️ The `set_session_token()` function automatically attaches the session token to all subsequent API requests, so you don’t need to pass it manually each time.
 
-<a name="generateotp"/>
+<a name="generateotp"></a>
 
 ## GenerateOtp
 
@@ -272,7 +272,7 @@ uid
 ```
 
 
-<a name="generatesecretapikey"/>
+<a name="generatesecretapikey"></a>
 
 ## GenerateSecretAPIKey
 
@@ -298,7 +298,7 @@ uid,otp
 }
 ```
 
-<a name="ipregistration"/>
+<a name="ipregistration"></a>
 
 ## IpRegistration
 
@@ -331,7 +331,7 @@ clientId,primaryIp,secondaryIp,password
 ```
 
 
-<a name="ipupdate"/>
+<a name="ipupdate"></a>
 
 ## IPUpdate
 
@@ -364,7 +364,7 @@ clientId,primaryIp,secondaryIp,password
 ```
 
 
-<a name="searchequityderivative"/>
+<a name="searchequityderivative"></a>
 
 ## SearchEquityDerivative:
 
@@ -431,7 +431,7 @@ search_symbol_name,exchange
 ```
 
 
-<a name="spanmargin"/>
+<a name="spanmargin"></a>
 
 ## SpanMargin
 
@@ -479,7 +479,7 @@ samco.span_margin(body={
 
 
 
-<a name="quote"/>
+<a name="quote"></a>
 
 ## Quote
 
@@ -583,7 +583,7 @@ The Quote function name in python is `get_quote()`
 }
 ```
 
-<a name="multiquote"/>
+<a name="multiquote"></a>
 
 ## MultiQuote
 
@@ -671,7 +671,7 @@ samco.multi_quote(body = {
 ```
 
 
-<a name="indexquote"/>
+<a name="indexquote"></a>
 
 ## IndexQuote
 
@@ -717,7 +717,7 @@ indexName
 }
 ```
 
-<a name="futurechain"/>
+<a name="futurechain"></a>
 
 ## FutureChain:
 
@@ -814,7 +814,7 @@ The `get_future_chain()` function can be used to search for future contracts for
 }
 ```
 
-<a name="optionchain"/>
+<a name="optionchain"></a>
 
 ## OptionChain:
 
@@ -858,7 +858,7 @@ search_symbol_name,exchange,expiry_date,strike_price,option_type
 
 
 
-<a name="userlimits"/>
+<a name="userlimits"></a>
 
 ## UserLimits
 
@@ -891,7 +891,7 @@ The UserLimits function `get_limits()` can be used  to gets the user cash balanc
   }
 }
 ```
-<a name="placeorder"/>
+<a name="placeorder"></a>
 
 ## PlaceOrder
 
@@ -948,7 +948,7 @@ symbol_name,exchange,transactionType,orderType,price,quantity,disclosedQuantity,
   }
 }
 ```
-<a name="placeorderbo"/>
+<a name="placeorderbo"></a>
 
 ## PlaceOrderBO
 
@@ -1007,7 +1007,7 @@ symbol_name,exchange,transactionType,orderType,price,quantity,disclosedQuantity,
   }
 }
 ```
-<a name="placeorderco"/>
+<a name="placeorderco"></a>
 
 ## PlaceOrderCO
 
@@ -1063,7 +1063,7 @@ symbol_name,exchange,transactionType,orderType,price,quantity,disclosedQuantity,
   }
 }
 ```
-<a name="modifyorder"/>
+<a name="modifyorder"></a>
 
 ## ModifyOrder
 
@@ -1108,7 +1108,7 @@ orderType,quantity,disclosedQuantity,orderValidity,price,triggerPrice,parentOrde
   }
 }
 ```
-<a name="orderbook"/>
+<a name="orderbook"></a>
 
 ## OrderBook
 
@@ -1162,7 +1162,7 @@ The OrderBook function `get_order_book()` retrieves and displays details of all 
   ]
 }
 ```
-<a name="triggerorders"/>
+<a name="triggerorders"></a>
 
 ## TriggerOrders
 
@@ -1200,7 +1200,7 @@ order_number
     ]
 }
 ```
-<a name="orderstatus"/>
+<a name="orderstatus"></a>
 
 ## OrderStatus
 
@@ -1242,7 +1242,7 @@ order_number
     }
 }
 ```
-<a name="cancelorder"/>
+<a name="cancelorder"></a>
 
 ## CancelOrder:
 
@@ -1266,7 +1266,7 @@ order_number
   "statusMessage" : "Order cancelled successfully"
 }
 ```
-<a name="cancelorderco"/>
+<a name="cancelorderco"></a>
 
 ## CancelOrderCO
 
@@ -1294,7 +1294,7 @@ order_number
   "statusMessage" : "Cover Order 200617000000181 exited successfully"
 }
 ```
-<a name="cancelorderbo"/>
+<a name="cancelorderbo"></a>
 
 ## CancelOrderBO
 
@@ -1324,7 +1324,7 @@ order_number
 
 
 
-<a name="addgtt"/>
+<a name="addgtt"></a>
 
 ## AddGtt
 
@@ -1375,7 +1375,7 @@ samco.add_gtt(body={
 }
 ```
 
-<a name="modifygtt"/>
+<a name="modifygtt"></a>
 
 ## ModifyGtt
 
@@ -1425,7 +1425,7 @@ samco.modify_gtt(body={"symbolName": "WIPRO24JUN585PE",
 ```
 
 
-<a name="deletegtt"/>
+<a name="deletegtt"></a>
 
 ## DeleteGtt
 
@@ -1459,7 +1459,7 @@ samco.delete_gtt(body={
 }
 ```
 
-<a name="addoco"/>
+<a name="addoco"></a>
 
 ## AddOco
 Function add_oco() adds an OCO (One-Cancels-the-Other) condition to a GTT (Good Till Triggered) order, allowing investors to set up two separate exit conditions for a single position. If one condition is triggered and its order is executed, the other order is automatically canceled.
@@ -1526,7 +1526,7 @@ samco.add_oco(body={
 
 
 
-<a name="modifyoco"/>
+<a name="modifyoco"></a>
 
 ## ModifyOco
 
@@ -1590,7 +1590,7 @@ samco.modify_oco(body={
 ```
 
 
-<a name="deleteoco"/>
+<a name="deleteoco"></a>
 
 
 ## DeleteOco
@@ -1626,7 +1626,7 @@ samco.delete_oco(body={
 ```
 
 
-<a name="listgttoco"/>
+<a name="listgttoco"></a>
 
 
 ## ListGttOco
@@ -1723,7 +1723,7 @@ samco.list_gtt_oco(listType='active')
 
 
 
-<a name="tradebook"/>
+<a name="tradebook"></a>
 
 ## TradeBook
 
@@ -1765,7 +1765,7 @@ The TradeBook function is `get_trade_book()`which gives details of all successfu
     ]
 }
 ```
-<a name="positions"/>
+<a name="positions"></a>
 
 ## Positions
 
@@ -1821,7 +1821,7 @@ position_type
     ]
 }
 ```
-<a name="positionconversion"/>
+<a name="positionconversion"></a>
 
 ## PositionConversion
 
@@ -1853,7 +1853,7 @@ symbolName,exchange,transactionType,positionType,quantityToConvert,fromProductTy
   "statusMsg" : "Position Conversion from MIS to CNC successful"
 }
 ```
-<a name="positionsquareoff"/>
+<a name="positionsquareoff"></a>
 
 ## PositionSquareOff
 
@@ -1890,7 +1890,7 @@ symbolName,exchange,transactionType,productType,netQuantity
   ]
 }
 ```
-<a name="holdings"/>
+<a name="holdings"></a>
 
 ## Holdings
 
@@ -1973,7 +1973,7 @@ The Holdings function `get_holding()` helps the user to get the details of the S
     ]
 }
 ```
-<a name="intradaycandledata"/>
+<a name="intradaycandledata"></a>
 
 ## IntraDayCandleData
 
@@ -2055,7 +2055,7 @@ symbol_name,exchange,from_date,to_date
   ]
 }
 ```
-<a name="indexintradaycandledata"/>
+<a name="indexintradaycandledata"></a>
 
 ### IndexIntraDayCandleData
 
@@ -2128,7 +2128,7 @@ index_name,from_date,to_date
   ]
 }
 ```
-<a name="historicalcandledata"/>
+<a name="historicalcandledata"></a>
 
 ## HistoricalCandleData:
 
@@ -2172,7 +2172,7 @@ symbol_name,exchange,from_date,to_date
   ]
 }
 ```
-<a name="indexhistoricalcandledata"/>
+<a name="indexhistoricalcandledata"></a>
 
 ### IndexHistoricalCandleData:
 The IndexHistoricalCandleData function `get_index_candle_data()` gets the Index historical candle data such as Open, high, low, close, last traded price and volume within specific dates for a specific index. From date is mandatory. End date is optional and defaults to Today.
@@ -2232,7 +2232,7 @@ index_name,from_date,to_date
   ]
 }
 ```
-<a name="streamingdata"/>
+<a name="streamingdata"></a>
 
 ## StreamingData
 
@@ -2257,7 +2257,7 @@ The API uses WebSocket protocol to establish a dedicated TCP connection after an
   "o":"29.65","oI":"","oIChg":"","sym":"-53","tBQ":"0","tSQ":"0","ttv":"0.00","vol":"0","yH":"0.00","yL":"0.00"},"streaming_type":"quote"}}
 
 
-<a name="logout"/>
+<a name="logout"></a>
 
 ## Logout
 Logging out user from the application.
